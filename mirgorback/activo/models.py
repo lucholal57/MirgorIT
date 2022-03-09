@@ -11,7 +11,9 @@ class Activo(models.Model):
     tipo = models.CharField(max_length=10)
     fabricante = models.CharField(max_length=10)
     modelo = models.CharField(max_length=10)
+    unidad_negocio = models.CharField(max_length=10)
+    planta = models.CharField(max_length=10)
 
     def __str__(self):
-        return f'Activo : {self.numero_inventario} '
+        return f'Activo : {self.numero_inventario} : {self.descripcion}'
 
