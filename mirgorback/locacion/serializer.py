@@ -1,8 +1,7 @@
-from dataclasses import field
 from rest_framework import serializers
 
-from mirgorback.activo.models import Activo
-from mirgorback.activo.serializer import ActivoSerializer
+from activo.models import Activo
+from activo.serializer import ActivoSerializer
 from .models import Locacion
 
 class LocacionSerializer(serializers.ModelSerializer):
