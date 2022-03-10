@@ -8,6 +8,13 @@ import { ActivoComponent } from './component/activo/activo.component';
 import { LineaComponent } from './component/linea/linea.component';
 import { LocacionComponent } from './component/locacion/locacion.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -15,12 +22,21 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     InicioComponent,
     ActivoComponent,
     LineaComponent,
-    LocacionComponent
+    LocacionComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    NgxPaginationModule,
+    NgMultiSelectDropDownModule.forRoot(),
+    NgxChartsModule,
+    BrowserAnimationsModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

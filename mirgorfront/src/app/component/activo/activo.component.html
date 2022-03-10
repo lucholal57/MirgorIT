@@ -1,1 +1,226 @@
-<p>activo works!</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Activos</title>
+</head>
+<body>
+
+<app-inicio></app-inicio>
+
+<form  [formGroup]="formularioRegistro" (submit)="registrarActivos()">
+    <ng-template #content let-c="close" let-d="dismiss" >
+
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Formulario de Activos</h4>
+          <button type="button" class="close" aria-label="Close" (click)="cerrarModal()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+    
+        <div class="modal-body">
+    
+            <div class="form-group">
+              <label style="color:black" for="nombre">Numero Inventario</label>
+              <div class="col-sm-12">
+              <input
+                type="text"
+                name="numero_inventario"
+                id="numero_inventario"
+                class="form-control"
+                formControlName="numero_inventario"
+                required
+              />
+            </div>
+            </div>
+    
+            <div class="form-group">
+              <label style="color:black" for="apellido">Numero Serie</label>
+              <div class="col-sm-12">
+              <input
+                type="text"
+                name="numero_serie"
+                id="numero_serie"
+                class="form-control"
+                formControlName="numero_serie"
+                required
+              />
+            </div>
+          </div>
+    
+            <div class="form-group">
+              <label style="color:black" for="nomber">Descripcion</label>
+              <div class="col-sm-12">
+              <input
+                type="text"
+                name="descripcion"
+                id="descripcion"
+                class="form-control"
+                formControlName="descripcion"
+                required
+              />
+            </div>
+          </div>
+    
+            <div class="form-group">
+              <label style="color:black" for="telefono">Estado</label>
+              <div class="col-sm-12">
+              <input
+                type="text"
+                name="estado"
+                id="estado"
+                class="form-control"
+                formControlName="estado"
+                required
+              />
+            </div>
+          </div>
+    
+            <div class="form-group">
+              <label style="color:black" for="nomber">Hostname</label>
+              <div class="col-sm-12">
+              <input
+                type="text"
+                name="hostname"
+                id="hostname"
+                class="form-control"
+                formControlName="hostname"
+                required
+              />
+            </div>
+          </div>
+    
+            <div class="form-group">
+              <label style="color:black" for="nomber">Tipo</label>
+              <div class="col-sm-12">
+              <input
+                type="text"
+                name="tipo"
+                id="tipo"
+                class="form-control"
+                formControlName="tipo"
+                required
+              />
+            </div>
+          </div>
+    
+            <div class="form-group">
+              <label style="color:black" for="nomber">Fabricante</label>
+              <div class="col-sm-12">
+              <input
+                type="text"
+                name="fabricante"
+                id="fabricante"
+                class="form-control"
+                formControlName="fabricante"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label style="color:black" for="nomber">Modelo</label>
+            <div class="col-sm-12">
+            <input
+              type="text"
+              name="modelo"
+              id="modelo"
+              class="form-control"
+              formControlName="modelo"
+              required
+            />
+          </div>
+        </div>
+
+        
+        <div class="form-group">
+            <label style="color:black" for="nomber">Planta</label>
+            <div class="col-sm-12">
+            <input
+              type="text"
+              name="planta"
+              id="planta"
+              class="form-control"
+              formControlName="planta"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+            <label style="color:black" for="nomber">Unidad de Negocio</label>
+            <div class="col-sm-12">
+            <input
+              type="text"
+              name="unidad_negocio"
+              id="unidad_negocio"
+              class="form-control"
+              formControlName="unidad_negocio"
+              required
+            />
+          </div>
+        </div>
+        
+    
+        </div>
+    
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-outline-dark" (click)="registrarActivos()" >Guardar</button>
+          <button type="button"  class="btn btn-outline-dark" >Editar</button>
+          <button type="reset"  class="btn btn-outline-dark" >Limpiar</button>
+        </div>
+      </ng-template>
+    
+</form>
+
+    <div class="container-fluid" id="contenedorTabla">
+        <legend align="center" style="color: aliceblue;" >Listado de Activos</legend>
+        <button class="btn btn-info" (click)="open(content)">Registrar</button>
+    <table class="table table-sm table-dark table-bordered table-striped">
+        
+        <thead class="thead-light">
+           
+            <tr class="text-center" style="color:black">
+                <th   scope="col">ID</th>
+                <th   scope="col">Numero de Inventario</th>
+                <th   scope="col">Numero de Serie</th>
+                <th   scope="col">Descripcion</th>
+                <th   scope="col">Estado</th>
+                <th   scope="col">Hostname</th>
+                <th   scope="col">Tipo</th>
+                <th   scope="col">Fabricante</th>
+                <th   scope="col">Modelo</th>
+                <th   scope="col">Planta</th> 
+                <th   scope="col">Unidad Negocio</th>
+                <th scope="col">Acciones</th>
+                 
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="text-center"*ngFor="let activo of listadoActivos" >
+                <th scope="row">{{activo.id}}</th>
+                <td scope="row">{{activo.numero_inventario}}</td>
+                <td scope="row">{{activo.numero_serie}}</td>
+                <td scope="row">{{activo.descripcion}}</td>
+                <td scope="row">{{activo.estado}}</td>
+                <td scope="row">{{activo.hostname}}</td>
+                <td scope="row">{{activo.tipo}}</td>
+                <td scope="row">{{activo.fabricante}}</td>
+                <td scope="row">{{activo.modelo}}</td>
+                <td scope="row">{{activo.planta}}</td>
+                <td scope="row">{{activo.unidad_negocio}}</td>
+                <td scope="">
+                    <button class="btn btn-warning" (click)="ActivoId(activo,content)">Editar</button>
+                    <button class="btn btn-danger">Eliminar</button>
+                </td>
+                
+            </tr>
+        </tbody>
+       
+    </table>
+</div>
+</body>
+</html>
+
