@@ -39,7 +39,7 @@ def LocacionBuscarPorId(request,pk=None):
         #Update
         elif request.method == 'PUT':
             #Busqueda con FIRST
-            locacion_edicion = Locacion.objects.filter('id').first()
+            locacion_edicion = Locacion.objects.filter(id=pk).first()
             serializer = LocacionPostPutSerializer(locacion_edicion,data=request.data)
             if serializer.is_valid():
                 serializer.save()
@@ -52,3 +52,10 @@ def LocacionBuscarPorId(request,pk=None):
             return Response({'message' : 'Locacion eliminada con exito'},status=status.HTTP_200_OK)
     #Si El objeto no existe retornamos un mensaje
     return Response({'message' : 'No se ha encontrado un locacion con esos datos'},status=status.HTTP_400_BAD_REQUEST)
+
+    
+@api_view(['GET'])
+def BusquedaLocacionNombre(request, nombre):
+    locacion = Locacion.objects.filter(nombre__icontains = nombre)
+    serializer = LocacionSerializer(locacion, many = True)
+    return Response(serializer.data, status=status.HTTP_200_OK)

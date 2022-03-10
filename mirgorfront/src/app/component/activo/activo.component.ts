@@ -3,8 +3,9 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Activo } from 'src/app/entidades/activo/activo';
 import { ActivoService } from 'src/app/services/activo/activo.service';
 //Agregar las alertas aqui
-
+import { AlertService} from '../../services/alert/alert.service';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -19,12 +20,17 @@ export class ActivoComponent implements OnInit {
   listadoActivos :Activo[] =[];
   //Buscar activo
   buscar_activo = "";
+   // Variables Botones
+   public btnGuardar = false;
+   public btnEditar = false;
+   public btnCancelar = false;
 
   constructor(
     private servicioActivo: ActivoService,
     private formBuilder : FormBuilder,
     private modalService: NgbModal,
-    config: NgbModalConfig
+    config: NgbModalConfig,
+    private alertas : AlertService,
     ) { }
 
   ngOnInit(): void {
@@ -49,6 +55,8 @@ export class ActivoComponent implements OnInit {
   //Open funcion para abrir ventana modal
   open(content:any) {
     this.modalService.open(content,{size:'lg',backdrop: 'static'});
+    this.btnGuardar=false;
+    this.btnEditar=true;
   }
   // Funcion para cerrar ventana modal
   cerrarModal(): void{
@@ -67,21 +75,31 @@ export class ActivoComponent implements OnInit {
     )
   }
   registrarActivos():void{
-    this.servicioActivo.registrarActivo(this.formularioRegistro.value).subscribe(
-      (res) => {
-        console.log(res)
-        this.cerrarModal();
-        this.getActivos();
-      },
-      (error) => {
-        console.log(error)
-        this.getActivos();
-      }
-    )
+    if(this.formularioRegistro.valid)
+    {
+      this.servicioActivo.registrarActivo(this.formularioRegistro.value).subscribe(
+        (res) => {
+          console.log(res)
+          this.cerrarModal();
+          this.getActivos();
+          this.alertas.alertsuccess();
+        },
+        (error) => {
+          console.log(error)
+          this.alertas.alerterror();
+        }
+      )
+    }
+    else{
+      this.alertas.alertcampos();
+    }
+    
   }
 
-  // Obtener alumno por id para mostrar los campos en los input para su proxima edicion
+  // Obtener Activo por id para mostrar los campos en los input para su proxima edicion
   ActivoId(activo:Activo, content : any): void {
+    this.btnEditar = false;
+    this.btnGuardar = true;
     this.modalService.open(content,{size:'lg'});
    
     this.servicioActivo.getActivoId(activo).subscribe(
@@ -106,5 +124,81 @@ export class ActivoComponent implements OnInit {
       }
     );
   }
+
+  // Editar Activo ya obtenido por el ID
+  editarActivoId(): void {
+      this.servicioActivo.editarActivo(this.formularioRegistro.value, this.formularioRegistro.value.id)
+      .subscribe(
+        (res) => {
+          console.log(res)
+          this.alertas.alertedit();
+          this.getActivos();
+          this.cerrarModal();
+        },
+        (error) => {
+          console.log(error)
+          this.alertas.alerterror();
+        }
+      );
+  }
+
+   // Eliminar alumno enviado por id
+   eliminarActivo(activo: Activo): void {
+
+    Swal.fire({
+      title: 'Esta seguro de eliminar??',
+      text: 'No podra revertir el cambio!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, Eliminar!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.servicioActivo.eliminarActivo(activo.id).subscribe(
+          (res) => {
+          this.getActivos();
+    });
+        Swal.fire('Eliminado!', 'Se eleccion ha sido eliminada.', 'success');
+      }
+
+    });
+}
+// Busqueda de acompañantes por alumno
+busquedaActivo(): void{
+  if (this.buscar_activo== ""){
+    this.alertas.alertcampos();
+  }else{
+    this.servicioActivo.busquedaActivo(this.buscar_activo).subscribe(
+      (res) => {
+        console.log(res)
+        if (res.length != 0){
+          this.alertas.alertLoading();
+        }else{
+          this.alertas.alertLoadingError();
+        }
+        this.listadoActivos= res;
+      },
+      (error) => {
+        this.alertas.alerterror();
+      }
+    )
+  }
+}
+
+// Funcion para cancelar busqueda por alumno
+cancelarbusquedaActivo(): void {
+  this.getActivos();
+  this.buscar_activo = "";
+}
+
+
+
+ // Funcion cancelar solo para borrar los valores de formulario reactivo
+ cancelar(): void{
+  this.formularioRegistro.reset();
+}
+
+
 
 }

@@ -9,5 +9,5 @@ class Linea(models.Model):
     #Forenkey
     activo = models.ForeignKey(Activo, on_delete=models.CASCADE)
 
-def __str__(self):
-    return f'Linea: {self.nombre} : {self.puesto} : {self.activo}'
+    def __str__(self):
+     return f'Linea: {self.nombre} : {self.puesto} : {self.activo}'

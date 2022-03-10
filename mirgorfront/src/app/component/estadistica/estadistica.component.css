@@ -7,7 +7,4 @@ body{
     min-height: 100vh;
 
 }
-
-.modal-xl {
-    max-width: 1000px;
-  }
+.ngx-charts { text { fill: #fff !important; } }

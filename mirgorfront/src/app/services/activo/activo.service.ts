@@ -26,4 +26,15 @@ export class ActivoService {
   getActivoId(busqueda_activo: Activo): Observable<Activo[]>{
     return this.http.get<Activo[]>(this.url + 'activo/' + busqueda_activo.id,httpOption );
   }
+  
+  editarActivo(formularioregistro: any, id: number): Observable<Activo[]>{
+    return this.http.put<Activo[]>(this.url + 'activo/' + id, formularioregistro, httpOption);
+
+  }
+  eliminarActivo(id: number): Observable<Activo[]>{
+    return this.http.delete<Activo[]>(this.url + 'activo/' + id, httpOption );
+  }
+  busquedaActivo(numero_inventario:string): Observable<Activo[]>{
+    return  this.http.get<Activo[]>(this.url + 'activo/buscar/' + numero_inventario, httpOption );
+  }
 }

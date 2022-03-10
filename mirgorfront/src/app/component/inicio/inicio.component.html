@@ -5,10 +5,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  
 </head>
 <body>
-
-    <nav class="navbar navbar-expand-md navbar-dark bg-primary">
+ <nav class="navbar navbar-expand-md navbar-dark bg-primary">
         <div class="d-flex w-50 order-0">
           <a href="#" class="navbar-left"><img src="../../../assets/Captura de pantalla 2022-03-09 210734.png" width="" height="50"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
@@ -50,20 +50,31 @@
                           LOCACION
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                          <a class="dropdown-item" href="#">Listar Activo por Locacion</a>
+                          <a class="dropdown-item" href="/locacion">Listar Activo por Locacion</a>
                           
                         </div>
                       </div>
 
                 </li>
 
+                <li class="nav-item active">
+
+                  <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle"  data-toggle="dropdown" >
+                        DASHBOARD
+                      </button>
+                      <div class="dropdown-menu" >
+                        <a class="dropdown-item" href="/dashboard">Graficos</a>
+                      </div>
+                    </div>
+      
+
+              </li>
+
             </ul>
         </div>
         <span class="navbar-text small text-truncate mt-1 w-50 text-right order-1 order-md-last"></span>
     </nav> 
-
-    
-
 </body>
 </html>
 

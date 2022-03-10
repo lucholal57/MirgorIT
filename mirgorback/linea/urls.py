@@ -1,8 +1,9 @@
 from django.urls import path
-from linea.views import LineaListado,LineaBuscarPorId
+from .views import LineaListado,LineaBuscarPorId,BusquedaLineaNombre
 
-urlpatters = [
+urlpatterns = [
     #Rutas para linea
     path('linea',LineaListado),
-    path('linea/<int:pk>',LineaBuscarPorId)
+    path('linea/<int:pk>',LineaBuscarPorId),
+    path('linea/buscar/<str:nombre>',BusquedaLineaNombre)
 ]

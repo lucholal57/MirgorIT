@@ -1,1 +1,116 @@
-<p>locacion works!</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Locacion</title>
+</head>
+<body>
+
+<app-inicio></app-inicio>
+
+<form  [formGroup]="formularioRegistro" (submit)="registrarLocaciones()">
+    <ng-template #content let-c="close" let-d="dismiss" >
+
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Formulario Locaciones</h4>
+          <button type="button" class="close" aria-label="Close" (click)="cerrarModal()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+    
+        <div class="modal-body">
+    
+            <div class="form-group">
+              <label style="color:black" for="nombre">Nombre</label>
+              <div class="col-sm-12">
+              <input
+                type="text"
+                name="nombre"
+                id="nombre"
+                class="form-control"
+                formControlName="nombre"
+                required
+              />
+            </div>
+            </div>
+    
+         
+          <div class="form-group">
+            <label style="color:black" for="activo">Activo</label>
+              <select class="form-control" formControlName="activo" required>
+                <option value="">Seleccione un Activo</option>
+                <option *ngFor="let activo of listadoActivos" [ngValue]="activo.id">
+           {{activo.numero_inventario}}
+                </option>
+              </select>
+          </div>
+        
+    
+        </div>
+    
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-outline-success" [hidden]="btnGuardar" (click)="registrarLocaciones()" >Guardar</button>
+          <button type="button"  class="btn btn-outline-warning" [hidden]="btnEditar" (click)="editarLocacionId()">Editar</button>
+          <button type="reset"  class="btn btn-outline-danger"  (click)="cancelar()" >Limpiar</button>
+        </div>
+      </ng-template>
+    
+</form>
+
+    <div class="container-fluid" id="contenedorTabla">
+        <legend align="center" style="color: aliceblue;" >ACTIVOS EN LOCACIONES</legend>
+        <hr>
+        <div class="btn-group">
+          <button class="btn btn-outline-primary"  (click)="open(content)" style="margin-right: 5px;" >Registrar</button>
+          <button class="btn btn-outline-primary"  (click)="busquedaLocacion()" style="margin-right: 5px;" >Buscar</button>
+          
+            <button class="btn btn-outline-danger"   style="margin-left: 5px;" (click)="cancelarbusquedaLocacion()" >Cancelar</button>
+        </div>
+      
+    
+    <table class="table table-sm table-dark table-bordered table-striped">
+        
+        <thead class="thead-light">
+           
+            <tr class="text-center" style="color:black">
+                <th   scope="col">ID</th>
+                <th   scope="col">Locacion</th>
+                <th   scope="col">Activo</th>
+                <th   scope="col">Descripcion</th>
+                <th   scope="col">Estado</th>
+                <th   scope="col">Hostname</th>
+                <th   scope="col">Tipo</th>
+                <th   scope="col">Fabricante</th>
+                <th   scope="col">Modelo</th>
+                <th scope="col">Acciones</th>
+                 
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="text-center"*ngFor="let locacion of listadoLocaciones" >
+                <th scope="row">{{locacion.id}}</th>
+                <td scope="row">{{locacion.nombre}}</td>
+                <td scope="row">{{locacion.activo.numero_inventario}}</td>
+                <td scope="row">{{locacion.activo.descripcion}}</td>
+                <td scope="row">{{locacion.activo.estado}}</td>
+                <td scope="row">{{locacion.activo.hostname}}</td>
+                <td scope="row">{{locacion.activo.tipo}}</td>
+                <td scope="row">{{locacion.activo.fabricante}}</td>
+                <td scope="row">{{locacion.activo.modelo}}</td>
+                <td scope="">
+                    <button class="btn btn-outline-warning" (click)="LocacionId(locacion,content)">Editar</button>
+                    <button class="btn btn-outline-danger" (click)="eliminarLocacion(locacion)">Eliminar</button>
+                </td>
+                
+            </tr>
+        </tbody>
+       
+    </table>
+</div>
+</body>
+</html>
+
+
+

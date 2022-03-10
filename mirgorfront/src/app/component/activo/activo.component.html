@@ -14,7 +14,7 @@
     <ng-template #content let-c="close" let-d="dismiss" >
 
         <div class="modal-header">
-          <h4 class="modal-title" id="modal-basic-title">Formulario de Activos</h4>
+          <h4 class="modal-title" id="modal-basic-title">Formulario Activos</h4>
           <button type="button" class="close" aria-label="Close" (click)="cerrarModal()">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -167,17 +167,27 @@
         </div>
     
         <div class="modal-footer">
-          <button type="submit" class="btn btn-outline-dark" (click)="registrarActivos()" >Guardar</button>
-          <button type="button"  class="btn btn-outline-dark" >Editar</button>
-          <button type="reset"  class="btn btn-outline-dark" >Limpiar</button>
+          <button type="submit" class="btn btn-outline-success"  [hidden]="btnGuardar" (click)="registrarActivos()" >Guardar</button>
+          <button type="button"  class="btn btn-outline-warning"  [hidden]="btnEditar" (click)="editarActivoId()">Editar</button>
+          <button type="reset"  class="btn btn-outline-danger"  (click)="cancelar()" >Limpiar</button>
         </div>
       </ng-template>
     
 </form>
 
     <div class="container-fluid" id="contenedorTabla">
-        <legend align="center" style="color: aliceblue;" >Listado de Activos</legend>
-        <button class="btn btn-info" (click)="open(content)">Registrar</button>
+        <legend align="center" style="color: aliceblue;" >ACTIVOS REGISTRADOS</legend>
+        <hr>
+        <div class="btn-group">
+          <button class="btn btn-outline-primary" (click)="open(content)" style="margin-right: 5px;" >Registrar</button>
+          <button class="btn btn-outline-primary"  (click)="busquedaActivo()" style="margin-right: 5px;" >Buscar</button>
+          <input type="text" name="nombre_alumno" placeholder="N° Inventario"
+            class="form-control" [(ngModel)]="buscar_activo">
+            <button class="btn btn-outline-danger"  style="margin-left: 5px;" (click)="cancelarbusquedaActivo()" >Cancelar</button>
+        </div>
+        
+        
+    
     <table class="table table-sm table-dark table-bordered table-striped">
         
         <thead class="thead-light">
@@ -212,8 +222,8 @@
                 <td scope="row">{{activo.planta}}</td>
                 <td scope="row">{{activo.unidad_negocio}}</td>
                 <td scope="">
-                    <button class="btn btn-warning" (click)="ActivoId(activo,content)">Editar</button>
-                    <button class="btn btn-danger">Eliminar</button>
+                    <button class="btn btn-outline-warning" (click)="ActivoId(activo,content)">Editar</button>
+                    <button class="btn btn-outline-danger"  (click)="eliminarActivo(activo)">Eliminar</button>
                 </td>
                 
             </tr>

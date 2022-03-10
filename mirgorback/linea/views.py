@@ -30,7 +30,7 @@ def LineaListado(request):
 
 def LineaBuscarPorId(request,pk=None):
     #Busqueda sin FIRST
-    linea = Linea.objects.filter('id')
+    linea = Linea.objects.filter(id=pk)
     #Validacion
     if linea:
         if request.method == 'GET':
@@ -39,7 +39,7 @@ def LineaBuscarPorId(request,pk=None):
         #Update
         elif request.method == 'PUT':
             #Busqueda con FIRST
-            linea_edicion = Linea.objects.filter('id').first()
+            linea_edicion = Linea.objects.filter(id=pk).first()
             serializer = LineaPostPutSerializer(linea_edicion,data=request.data)
             if serializer.is_valid():
                 serializer.save()
@@ -53,3 +53,8 @@ def LineaBuscarPorId(request,pk=None):
     #Si el objeto no existe retornamos un mensaje
     return Response({'message' : 'No se ha encontrado una linea con esos datos'},status=status.HTTP_200_OK)
 
+@api_view(['GET'])
+def BusquedaLineaNombre(request, nombre):
+    linea = Linea.objects.filter(nombre__icontains = nombre)
+    serializer = LineaSerializer(linea, many = True)
+    return Response(serializer.data, status=status.HTTP_200_OK)

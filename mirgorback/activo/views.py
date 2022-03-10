@@ -60,6 +60,7 @@ def ActivoBuscarPorId(request, pk=None):
     #Busqueda de Activo por inventario
 @api_view(['GET'])
 
-def BusquedaActivoInventario(request, pk=None):
-    activo = Activo.objects.filter(id=pk)
+def BusquedaActivoInventario(request, numero_inventario):
+    activo = Activo.objects.filter(numero_inventario = numero_inventario)
     serializer = ActivoSerializer(activo, many = True)
+    return Response(serializer.data, status=status.HTTP_200_OK)

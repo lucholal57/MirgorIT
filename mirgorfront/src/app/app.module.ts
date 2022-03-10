@@ -14,6 +14,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EstadisticaComponent } from './component/estadistica/estadistica.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ActivoComponent,
     LineaComponent,
     LocacionComponent,
+    EstadisticaComponent,
     
   ],
   imports: [
@@ -35,8 +37,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NgxPaginationModule,
     NgMultiSelectDropDownModule.forRoot(),
     NgxChartsModule,
-    BrowserAnimationsModule
-    
+    BrowserAnimationsModule,
+  
   ],
   providers: [],
   bootstrap: [AppComponent]
