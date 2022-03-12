@@ -1,5 +1,5 @@
 body{
-    background-image: url(../../../assets/fondo_mirgor.png);
+    background-color: azure;
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -7,4 +7,5 @@ body{
     min-height: 100vh;
 
 }
-.ngx-charts { text { fill: #fff !important; } }
+
+

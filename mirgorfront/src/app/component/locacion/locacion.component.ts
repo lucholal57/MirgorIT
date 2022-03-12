@@ -22,6 +22,8 @@ export class LocacionComponent implements OnInit {
   listadoLocaciones :Locacion[] =[];
   //Array de Activos
   listadoActivos :Activo[] =[]
+  //Array de Activo Existe
+  listadoActivosExiste :Activo[] =[]
   //Buscar 
   buscar_locacion = "";
     // Variables Botones
@@ -83,7 +85,12 @@ export class LocacionComponent implements OnInit {
     )
   }
   registrarLocaciones():void{
-    console.log(this.formularioRegistro.value.id)
+    this.servicioActivo.busquedaActivo(this.formularioRegistro.value.activo.numero_inventario).subscribe(
+      (res) => {
+        this.listadoActivosExiste = res;
+        console.log("Vemaos que traler", this.listadoActivosExiste)
+      }
+    )
     if(this.formularioRegistro.valid)
     {
       this.servicioLocacion.registrarLocacion(this.formularioRegistro.value).subscribe(

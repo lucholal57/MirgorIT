@@ -22,6 +22,8 @@ export class LineaComponent implements OnInit {
   listadoLineas :Linea[] =[];
   //Array de Activos
   listadoActivos :Activo[] =[]
+   //Array de Activos puesto
+   listadoActivosPuestos :Activo[] =[]
   //Buscar Linea
   buscar_linea = "";
   //Puesto seleccionado
@@ -64,9 +66,53 @@ export class LineaComponent implements OnInit {
     this.modalService.dismissAll();
     this.formularioRegistro.reset();
   }
-  seleccionpuerto(){
 
+  seleccionpuesto(){
+    if (this.formularioRegistro.value.puesto == "IMEICHECK") {
+      this.servicioActivo.getActivosPorPuestoLinea('anyway').subscribe(
+        (res)=>{
+          this.listadoActivosPuestos = res;
+          console.log(res)
+        }
+      )
+    }
+    if (this.formularioRegistro.value.puesto == "BOXING" || this.formularioRegistro.value.puesto == "ASOCIACION 1" || this.formularioRegistro.value.puesto == "ASOCIACION 2" 
+    || this.formularioRegistro.value.puesto == "VALIDACION" || this.formularioRegistro.value.puesto == "IMPRESION IMEI" || this.formularioRegistro.value.puesto == "ASOCIACION 2") {
+      this.servicioActivo.getActivosPorPuestoLinea('TP').subscribe(
+        (res)=>{
+          this.listadoActivosPuestos = res;
+          console.log(res)
+        }
+      )
+    }
+    if (this.formularioRegistro.value.puesto == "TEST-CAM") {
+      this.servicioActivo.getActivosPorPuestoLinea('BRESSNER').subscribe(
+        (res)=>{
+          this.listadoActivosPuestos = res;
+          console.log(res)
+        }
+      )
+    }
+    if (this.formularioRegistro.value.puesto == "RF") {
+      this.servicioActivo.getActivosPorPuestoLinea('YOI').subscribe(
+        (res)=>{
+          this.listadoActivosPuestos = res;
+          console.log(res)
+        }
+      )
+    }
+    if (this.formularioRegistro.value.puesto == "OCV") {
+      this.servicioActivo.getActivosPorPuestoLinea('YOI').subscribe(
+        (res)=>{
+          this.listadoActivosPuestos = res;
+          console.log(res)
+        }
+      )
+    }
+    
+    
   }
+
   getActivos(): void{
     this.servicioActivo.getActivos().subscribe(
       (res) => {

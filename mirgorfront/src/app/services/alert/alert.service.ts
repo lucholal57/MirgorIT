@@ -14,8 +14,8 @@ export class AlertService {
     Swal.fire('Excelente', 'Se registro correctamente', 'success');
   }
   // Alert asistencia
-  alertausente() {
-    Swal.fire('"El personal esta Ausente en la fecha indicada del Permiso de Salida"')
+  alertActivoExistente() {
+    Swal.fire('"El Activo Existe en Base de Datos')
   }
 
   // Alerta Edicion OK

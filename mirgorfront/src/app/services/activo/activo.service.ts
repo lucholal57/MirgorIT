@@ -20,6 +20,9 @@ export class ActivoService {
   getActivos(): Observable<Activo[]>{
     return this.http.get<Activo[]>(this.url + 'activo' , httpOption)
   }
+  getActivosPorPuestoLinea(fabricante:string): Observable<Activo[]>{
+    return this.http.get<Activo[]>(this.url + 'activo/buscar/fabricante/' + fabricante  , httpOption)
+  }
   registrarActivo(formularioregistro:any):Observable<Activo[]>{
     return this.http.post<Activo[]>(this.url + 'activo', formularioregistro, httpOption)
   }

@@ -65,7 +65,8 @@
         <div class="btn-group">
           <button class="btn btn-outline-primary"  (click)="open(content)" style="margin-right: 5px;" >Registrar</button>
           <button class="btn btn-outline-primary"  (click)="busquedaLocacion()" style="margin-right: 5px;" >Buscar</button>
-          
+          <input type="text" name="linea" placeholder="Locacion"
+          class="form-control" [(ngModel)]="buscar_locacion">
             <button class="btn btn-outline-danger"   style="margin-left: 5px;" (click)="cancelarbusquedaLocacion()" >Cancelar</button>
         </div>
       

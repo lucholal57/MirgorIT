@@ -18,6 +18,8 @@ export class ActivoComponent implements OnInit {
   p:number = 1;
   //Array de Activos
   listadoActivos :Activo[] =[];
+    //Array de Activos
+    listadoActivosExistente :Activo[] =[];
   //Buscar activo
   buscar_activo = "";
    // Variables Botones
@@ -51,6 +53,8 @@ export class ActivoComponent implements OnInit {
     unidad_negocio:['',[Validators.required]],
     planta:['',[Validators.required]]
   })
+  
+
 
   //Open funcion para abrir ventana modal
   open(content:any) {
@@ -74,6 +78,7 @@ export class ActivoComponent implements OnInit {
     }
     )
   }
+  
   registrarActivos():void{
     if(this.formularioRegistro.valid)
     {

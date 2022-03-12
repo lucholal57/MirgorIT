@@ -64,3 +64,13 @@ def BusquedaActivoInventario(request, numero_inventario):
     activo = Activo.objects.filter(numero_inventario = numero_inventario)
     serializer = ActivoSerializer(activo, many = True)
     return Response(serializer.data, status=status.HTTP_200_OK)
+
+        #Busqueda de Activo por fabricante para asociar a linea
+@api_view(['GET'])
+
+def BusquedaActivoFabricante(request, fabricante):
+    activo = Activo.objects.filter(fabricante__icontains = fabricante)
+    serializer = ActivoSerializer(activo, many = True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+      
