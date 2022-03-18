@@ -4,7 +4,7 @@ from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from locacion.models import Locacion
-from locacion.serializer import LocacionSerializer, LocacionPostPutSerializer
+from locacion.serializer import LocacionSerializer
 
 # Create your views here.
 
@@ -18,7 +18,7 @@ def LocacionListado(request):
         return Response(serializer.data,status=status.HTTP_200_OK)
     #Register
     elif request.method == 'POST':
-         serializer = LocacionPostPutSerializer(data=request.data)
+         serializer = LocacionSerializer(data=request.data)
          #Validaciones
          if serializer.is_valid():
              serializer.save()
@@ -34,13 +34,13 @@ def LocacionBuscarPorId(request,pk=None):
     #Validacion
     if locacion:
         if request.method == 'GET':
-            serializer = LocacionPostPutSerializer(locacion,many=True)
+            serializer = LocacionSerializer(locacion,many=True)
             return Response(serializer.data,status=status.HTTP_200_OK)
         #Update
         elif request.method == 'PUT':
             #Busqueda con FIRST
             locacion_edicion = Locacion.objects.filter(id=pk).first()
-            serializer = LocacionPostPutSerializer(locacion_edicion,data=request.data)
+            serializer = LocacionSerializer(locacion_edicion,data=request.data)
             if serializer.is_valid():
                 serializer.save()
                 return Response(serializer.data,status=status.HTTP_200_OK)

@@ -6,8 +6,8 @@ import { LocacionService } from 'src/app/services/locacion/locacion.service';
 import { AlertService} from '../../services/alert/alert.service';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2';
-import { Activo } from 'src/app/entidades/activo/activo';
-import { ActivoService } from 'src/app/services/activo/activo.service';
+import { Activo } from 'src/app/entidades/activos/activo_industrial/activo';
+import { ActivoService } from 'src/app/services/activos/activo_industrial/activo.service';
 
 
 @Component({
@@ -20,11 +20,7 @@ export class LocacionComponent implements OnInit {
   p:number = 1;
   //Array de Locacions
   listadoLocaciones :Locacion[] =[];
-  //Array de Activos
-  listadoActivos :Activo[] =[]
-  //Array de Activo Existe
-  listadoActivosExiste :Activo[] =[]
-  //Buscar 
+  //Buscar
   buscar_locacion = "";
     // Variables Botones
     public btnGuardar = false;
@@ -42,14 +38,15 @@ export class LocacionComponent implements OnInit {
 
   ngOnInit(): void {
     this.getLocaciones();
-    this.getActivos();
   }
 
-  //Formulario Registro 
+  //Formulario Registro
   formularioRegistro= this.formBuilder.group({
     id:[''],
-    nombre:['',[Validators.required]],
-    activo:['',[Validators.required]]
+    sitio:['',[Validators.required]],
+    area:['',[Validators.required]],
+    localizacion:['',[Validators.required]],
+    puesto:['',[Validators.required]],
   })
 
   //Open funcion para abrir ventana modal
@@ -63,17 +60,7 @@ export class LocacionComponent implements OnInit {
     this.modalService.dismissAll();
     this.formularioRegistro.reset();
   }
-  getActivos(): void{
-    this.servicioActivo.getActivos().subscribe(
-      (res) => {
-        this.listadoActivos = res;
-      },
-    (error) => {
-      console.log(error)
-    }
-    )
-  }
-  
+
   getLocaciones(): void{
     this.servicioLocacion.getLocaciones().subscribe(
       (res) => {
@@ -85,12 +72,6 @@ export class LocacionComponent implements OnInit {
     )
   }
   registrarLocaciones():void{
-    this.servicioActivo.busquedaActivo(this.formularioRegistro.value.activo.numero_inventario).subscribe(
-      (res) => {
-        this.listadoActivosExiste = res;
-        console.log("Vemaos que traler", this.listadoActivosExiste)
-      }
-    )
     if(this.formularioRegistro.valid)
     {
       this.servicioLocacion.registrarLocacion(this.formularioRegistro.value).subscribe(
@@ -109,7 +90,7 @@ export class LocacionComponent implements OnInit {
     else{
       this.alertas.alertcampos();
     }
-    
+
   }
 
   // Obtener Locacion por id para mostrar los campos en los input para su proxima edicion
@@ -121,10 +102,12 @@ export class LocacionComponent implements OnInit {
       (res) => {
         this.formularioRegistro.patchValue({
           id: res[0].id,
-          nombre: res[0].nombre,
-          activo: res[0].activo
+          sitio: res[0].sitio,
+          area: res[0].area,
+          localizacion: res[0].localizacion,
+          puesto: res[0].puesto,
         });
-       
+
       },
       (error) => {
         console.log();

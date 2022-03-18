@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'activo',
     'locacion',
-    'linea'
+    'usuario',
+    'linea_telefonica'
 ]
 
 MIDDLEWARE = [

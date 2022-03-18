@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registrar Activo Corporativo</title>
+</head>
+<body>
+
+  <app-inicio></app-inicio>
+
+  <form [formGroup]="formularioRegistro">
+    <ng-template #content let-c="close" let-d="dismiss" >
+
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Formulario Activo Industrial</h4>
+        <button type="button" class="close" aria-label="Close" (click)="cerrarModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+
+          <div class="form-group">
+            <label style="color:black" for="nombre">Inventario</label>
+            <div class="col-sm-12">
+            <input
+              type="text"
+              name="inventario"
+              id="inventario"
+              class="form-control"
+              formControlName="inventario"
+              required
+            />
+          </div>
+
+          </div>
+
+          <div class="form-group">
+            <label style="color:black" for="apellido">IMEI</label>
+            <div class="col-sm-12">
+            <input
+              type="text"
+              name="imei"
+              id="imei"
+              class="form-control"
+              formControlName="imei"
+              required
+            />
+          </div>
+        </div>
+
+          <div class="form-group">
+            <label style="color:black" for="nomber">Marca</label>
+            <div class="col-sm-12">
+            <input
+              type="text"
+              name="marca"
+              id="marca"
+              class="form-control"
+              formControlName="marca"
+              required
+            />
+          </div>
+        </div>
+
+          <div class="form-group">
+            <label style="color:black" for="telefono">Modelo</label>
+            <div class="col-sm-12">
+            <input
+              type="text"
+              name="modelo"
+              id="modelo"
+              class="form-control"
+              formControlName="modelo"
+              required
+            />
+          </div>
+        </div>
+
+          <div class="form-group">
+            <label style="color:black" for="nomber">Tag</label>
+            <div class="col-sm-12">
+            <input
+              type="text"
+              name="tag"
+              id="tag"
+              class="form-control"
+              formControlName="tag"
+              required
+            />
+          </div>
+        </div>
+
+          <div class="form-group">
+            <label style="color:black" for="nomber">Costo</label>
+            <div class="col-sm-12">
+            <input
+              type="text"
+              name="costo"
+              id="costo"
+              class="form-control"
+              formControlName="costo"
+              required
+            />
+          </div>
+        </div>
+
+          <div class="form-group">
+            <label style="color:black" for="nomber">Estado</label>
+            <div class="col-sm-12">
+            <input
+              type="text"
+              name="estado"
+              id="estado"
+              class="form-control"
+              formControlName="estado"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label style="color:black" for="nomber">Fecha Entrega</label>
+          <div class="col-sm-12">
+          <input
+            type="date"
+            name="fecha_entrega"
+            id="fecha_entrega"
+            class="form-control"
+            formControlName="fecha_entrega"
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label style="color:black" for="activo">Usuario</label>
+          <select class="form-control" formControlName="usuario">
+            <option value="">Seleccione de Usuario</option>
+            <option *ngFor="" [ngValue]="">
+            </option>
+          </select>
+      </div>
+
+      <div class="form-group">
+        <label style="color:black" for="activo">Linea Telefonica</label>
+          <select class="form-control" formControlName="linea_telefonica">
+            <option value="">Seleccione Linea Telefonica</option>
+            <option *ngFor="" [ngValue]="">
+            </option>
+          </select>
+      </div>
+
+      <div class="form-group">
+        <label style="color:black" for="activo">Ubicacion</label>
+          <select class="form-control" formControlName="locacion" required>
+            <option value="">Seleccione Ubicacion</option>
+            <option *ngFor="" [ngValue]="">
+            </option>
+          </select>
+      </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-outline-success"  [hidden]="btnGuardar" (click)="registrarActivoCelular()" >Guardar</button>
+        <button type="button"  class="btn btn-outline-warning"  [hidden]="btnEditar" (click)="editarActivoCelular()">Editar</button>
+        <button type="reset"  class="btn btn-outline-danger"  (click)="cancelar()" >Limpiar</button>
+      </div>
+    </ng-template>
+  </form>
+
+  <div class="container-fluid" id="contenedorTabla">
+    <legend align="center" style="color: aliceblue;" >ACTIVOS INDUSTRALES</legend>
+    <hr>
+    <div class="btn-group">
+      <button class="btn btn-outline-primary" (click)="open(content)" style="margin-right: 5px;" >Registrar</button>
+      <button class="btn btn-outline-primary"  (click)="busquedaActivo()" style="margin-right: 5px;" >Buscar</button>
+      <input type="text" name="nombre_alumno" placeholder="N° Inventario"
+        class="form-control" [(ngModel)]="buscar_activo">
+        <button class="btn btn-outline-danger"  style="margin-left: 5px;" (click)="cancelarbusquedaActivo()" >Cancelar</button>
+    </div>
+
+
+
+<table class="table table-sm table-dark table-bordered table-striped">
+
+    <thead class="thead-light">
+
+        <tr class="text-center" style="color:black">
+            <th   scope="col">ID</th>
+            <th   scope="col">Inventario</th>
+            <th   scope="col">IMEI</th>
+            <th   scope="col">Marca</th>
+            <th   scope="col">Modelo</th>
+            <th   scope="col">Tag</th>
+            <th   scope="col">Costo</th>
+            <th   scope="col">Estado</th>
+            <th   scope="col">F. Entrega</th>
+            <th   scope="col">Usuario</th>
+            <th   scope="col">Linea Tel.</th>
+            <th   scope="col">Ubicacion</th>
+            <th scope="col">Acciones</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="text-center"*ngFor="let activo of listadoActivoCelular" >
+            <th scope="row">{{activo.id}}</th>
+            <td scope="row">{{activo.inventario}}</td>
+            <td scope="row">{{activo.imei}}</td>
+            <td scope="row">{{activo.marca}}</td>
+            <td scope="row">{{activo.modelo}}</td>
+            <td scope="row">{{activo.tag}}</td>
+            <td scope="row">{{activo.costo}}</td>
+            <td scope="row">{{activo.estado}}</td>
+            <td scope="row">{{activo.fecha_entrega}}</td>
+            <td scope="row">{{activo.usuario}}</td>
+            <td scope="row">{{activo.linea_telefonica}}</td>
+            <td scope="row">{{activo.locacion.sitio}} - {{activo.locacion.area}} - {{activo.locacion.localizacion}} - {{activo.locacion.puesto}}</td>
+            <td scope="">
+                <button class="btn btn-outline-warning" (click)="ActivoCelularId(activo,content)">Editar</button>
+                <button class="btn btn-outline-danger"  (click)="eliminarActivoCelular(activo)">Eliminar</button>
+            </td>
+
+        </tr>
+    </tbody>
+
+</table>
+</div>
+
+</body>
+</html>

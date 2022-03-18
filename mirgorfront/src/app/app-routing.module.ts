@@ -1,17 +1,27 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ActivoComponent } from './component/activo/activo.component';
+import { ActivoCelularComponent } from './component/activos/activo-celular/activo-celular.component';
+import { ActivoGeneralComponent } from './component/activos/activo-general/activo-general.component';
+import { ActivoNotebookComponent } from './component/activos/activo-notebook/activo-notebook.component';
+import { ActivoStandarComponent } from './component/activos/activo-standar/activo-standar.component';
+import { ActivoComponent } from './component/activos/activo_industrial/activo.component';
 import { EstadisticaComponent } from './component/estadistica/estadistica.component';
 import { InicioComponent } from './component/inicio/inicio.component';
-import { LineaComponent } from './component/linea/linea.component';
+import { LineaTelefonicaComponent } from './component/linea-telefonica/linea-telefonica.component';
 import { LocacionComponent } from './component/locacion/locacion.component';
+import { UsuarioComponent } from './component/usuario/usuario.component';
 
 const routes: Routes = [
   {path:'', component: InicioComponent},
-  {path:'activo', component: ActivoComponent},
-  {path:'linea', component: LineaComponent},
+  {path:'activo_industrial', component: ActivoComponent},
+  {path:'activo_celular', component: ActivoCelularComponent},
+  {path:'activo_notebook', component: ActivoNotebookComponent},
+  {path:'activo_standar', component: ActivoStandarComponent},
+  {path:'activo_general', component: ActivoGeneralComponent},
   {path:'locacion', component: LocacionComponent},
-  {path:'dashboard', component: EstadisticaComponent}
+  {path:'dashboard', component: EstadisticaComponent},
+  {path:'usuario', component: UsuarioComponent},
+  {path:'linea_telefonica', component:LineaTelefonicaComponent}
 ];
 
 @NgModule({
