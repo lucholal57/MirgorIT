@@ -1,1 +1,243 @@
-<p>activo-notebook works!</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registrar Notebook</title>
+</head>
+<body>
+  <app-inicio></app-inicio>
+
+  <form [formGroup]="formularioRegistro">
+
+    <ng-template #content let-c="close" let-d="dismiss" >
+
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Formulario Activo Notebook</h4>
+        <button type="button" class="close" aria-label="Close" (click)="cerrarModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+
+          <div class="form-group">
+            <label style="color:black" for="nombre">Inventario</label>
+            <div class="col-sm-12">
+            <input
+              type="text"
+              name="inventario"
+              id="inventario"
+              class="form-control"
+              formControlName="inventario"
+              required
+            />
+          </div>
+
+          </div>
+
+          <div class="form-group">
+            <label style="color:black" for="nomber">Marca</label>
+            <div class="col-sm-12">
+            <input
+              type="text"
+              name="marca"
+              id="marca"
+              class="form-control"
+              formControlName="marca"
+              required
+            />
+          </div>
+        </div>
+
+          <div class="form-group">
+            <label style="color:black" for="telefono">Modelo</label>
+            <div class="col-sm-12">
+            <input
+              type="text"
+              name="modelo"
+              id="modelo"
+              class="form-control"
+              formControlName="modelo"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label style="color:black" for="telefono">Serie</label>
+          <div class="col-sm-12">
+          <input
+            type="text"
+            name="serie"
+            id="serie"
+            class="form-control"
+            formControlName="serie"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label style="color:black" for="telefono">HostName</label>
+        <div class="col-sm-12">
+        <input
+          type="text"
+          name="hostname"
+          id="hostname"
+          class="form-control"
+          formControlName="hostname"
+          required
+        />
+      </div>
+    </div>
+
+          <div class="form-group">
+            <label style="color:black" for="nomber">Tag</label>
+            <div class="col-sm-12">
+            <input
+              type="text"
+              name="tag"
+              id="tag"
+              class="form-control"
+              formControlName="tag"
+              required
+            />
+          </div>
+        </div>
+
+          <div class="form-group">
+            <label style="color:black" for="nomber">Costo</label>
+            <div class="col-sm-12">
+            <input
+              type="text"
+              name="costo"
+              id="costo"
+              class="form-control"
+              formControlName="costo"
+              required
+            />
+          </div>
+        </div>
+
+          <div class="form-group">
+            <label style="color:black" for="nomber">Estado</label>
+            <div class="col-sm-12">
+            <input
+              type="text"
+              name="estado"
+              id="estado"
+              class="form-control"
+              formControlName="estado"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label style="color:black" for="nomber">Fecha Entrega</label>
+          <div class="col-sm-12">
+          <input
+            type="date"
+            name="fecha_entrega"
+            id="fecha_entrega"
+            class="form-control"
+            formControlName="fecha_entrega"
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label style="color:black" for="activo">Usuario</label>
+          <select class="form-control" formControlName="usuario">
+            <option value="">Seleccione de Usuario</option>
+            <option *ngFor="let usuario of listadoUsuario" [ngValue]="usuario.id">
+              {{usuario.nombre}} - {{usuario.area}}
+            </option>
+          </select>
+      </div>
+
+      <div class="form-group">
+        <label style="color:black" for="activo">Ubicacion</label>
+          <select class="form-control" formControlName="locacion" required>
+            <option value="">Seleccione Ubicacion</option>
+            <option *ngFor="let locacion of listadoLocaciones" [ngValue]="locacion.id">
+              {{locacion.sitio}} - {{locacion.area}} - {{locacion.localizacion}} - {{locacion.puesto}}
+            </option>
+          </select>
+      </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-outline-success"  [hidden]="btnGuardar" (click)="registrarActivoNotebook()" >Guardar</button>
+        <button type="button"  class="btn btn-outline-warning"  [hidden]="btnEditar" (click)="editarActivoNotebook()">Editar</button>
+        <button type="reset"  class="btn btn-outline-danger"  (click)="cancelar()" >Limpiar</button>
+      </div>
+    </ng-template>
+
+  </form>
+
+  <div class="container-fluid" id="contenedorTabla">
+    <legend align="center" style="color: aliceblue;" >NOTEBOOK</legend>
+    <hr>
+    <div class="btn-group">
+      <button class="btn btn-outline-primary" (click)="open(content)" style="margin-right: 5px;" >Registrar</button>
+      <button class="btn btn-outline-primary" style="margin-right: 5px;" >Buscar</button>
+      <input type="text"  placeholder="N° Inventario"
+        class="form-control" [(ngModel)]="buscar_activo">
+        <button class="btn btn-outline-danger"  style="margin-left: 5px;" >Cancelar</button>
+    </div>
+
+
+
+<table class="table table-sm table-dark table-bordered table-striped">
+
+    <thead class="thead-light">
+
+        <tr class="text-center" style="color:black">
+            <th   scope="col">ID</th>
+            <th   scope="col">Inventario</th>
+            <th   scope="col">Marca</th>
+            <th   scope="col">Modelo</th>
+            <th   scope="col">Serie</th>
+            <th   scope="col">Hostname</th>
+            <th   scope="col">Tag</th>
+            <th   scope="col">Costo</th>
+            <th   scope="col">Estado</th>
+            <th   scope="col">F. Entrega</th>
+            <th   scope="col">Usuario</th>
+            <th   scope="col">Ubicacion</th>
+            <th scope="col">Acciones</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="text-center"*ngFor="let activo of listadoActivoNotebook" >
+            <th scope="row">{{activo.id}}</th>
+            <td scope="row">{{activo.inventario}}</td>
+            <td scope="row">{{activo.marca}}</td>
+            <td scope="row">{{activo.modelo}}</td>
+            <td scope="row">{{activo.serie}}</td>
+            <td scope="row">{{activo.hostname}}</td>
+            <td scope="row">{{activo.tag}}</td>
+            <td scope="row">{{activo.costo}}</td>
+            <td scope="row">{{activo.estado}}</td>
+            <td scope="row">{{activo.fecha_entrega}}</td>
+            <td scope="row">{{activo.usuario.nombre}} - {{activo.usuario.area}} - {{activo.usuario.posicion}}</td>
+            <td scope="row">{{activo.locacion.sitio}} - {{activo.locacion.area}} - {{activo.locacion.localizacion}} - {{activo.locacion.puesto}}</td>
+            <td scope="">
+                <button class="btn btn-outline-warning" (click)="ActivoNotebookId(activo,content)">Editar</button>
+                <button class="btn btn-outline-danger"  (click)="eliminarActivoNotebook(activo)">Eliminar</button>
+            </td>
+
+        </tr>
+    </tbody>
+
+</table>
+</div>
+
+
+</body>
+</html>

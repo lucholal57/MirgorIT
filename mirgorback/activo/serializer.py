@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import ActivoGeneral, ActivoIndustrial, ActivoStandar, Celular, Notebook
+from .models import ActivoCelular, ActivoGeneral, ActivoIndustrial, ActivoNotebook, ActivoStandar
 from locacion.serializer import LocacionSerializer
 from usuario.serializer import UsuarioSerializer
 from linea_telefonica.serializer import LineaTelefonicaSerializer
@@ -24,14 +24,14 @@ class ActivoCelularSerializer(serializers.ModelSerializer):
     usuario = UsuarioSerializer(read_only=True)
     linea_telefonica = LineaTelefonicaSerializer(read_only=True)
     class Meta:
-        model = Celular
+        model = ActivoCelular
         fields = '__all__'
         depth = 2
 
 class ActivoCelularPostPutSerializer(serializers.ModelSerializer):
     """Serializador de activos industriales con ubicaciones"""
     class Meta:
-        model = Celular
+        model = ActivoCelular
         fields = '__all__'
 
 class ActivoNotebookSerializer(serializers.ModelSerializer):
@@ -39,14 +39,14 @@ class ActivoNotebookSerializer(serializers.ModelSerializer):
     locacion = LocacionSerializer(read_only=True)
     usuario = UsuarioSerializer(read_only=True)
     class Meta:
-        model = Notebook
+        model = ActivoNotebook
         fields = '__all__'
         depth = 2
 
 class ActivoNotebookPostPutSerializer(serializers.ModelSerializer):
     """Serializador de activos industriales con ubicaciones"""
     class Meta:
-        model = Notebook
+        model = ActivoNotebook
         fields = '__all__'
 
 class ActivoGeneralSerializer(serializers.ModelSerializer):

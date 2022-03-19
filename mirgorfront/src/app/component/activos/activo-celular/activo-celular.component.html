@@ -14,7 +14,7 @@
     <ng-template #content let-c="close" let-d="dismiss" >
 
       <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Formulario Activo Industrial</h4>
+        <h4 class="modal-title" id="modal-basic-title">Formulario Activo Celular</h4>
         <button type="button" class="close" aria-label="Close" (click)="cerrarModal()">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -138,7 +138,8 @@
         <label style="color:black" for="activo">Usuario</label>
           <select class="form-control" formControlName="usuario">
             <option value="">Seleccione de Usuario</option>
-            <option *ngFor="" [ngValue]="">
+            <option *ngFor="let usuario of listadoUsuario" [ngValue]="usuario.id">
+              {{usuario.nombre}} - {{usuario.area}}
             </option>
           </select>
       </div>
@@ -147,7 +148,8 @@
         <label style="color:black" for="activo">Linea Telefonica</label>
           <select class="form-control" formControlName="linea_telefonica">
             <option value="">Seleccione Linea Telefonica</option>
-            <option *ngFor="" [ngValue]="">
+            <option *ngFor="let linea_telefonica of listadoLineaTelefonica" [ngValue]="linea_telefonica.id">
+            {{linea_telefonica.numero}} - {{linea_telefonica.plan}}
             </option>
           </select>
       </div>
@@ -156,7 +158,8 @@
         <label style="color:black" for="activo">Ubicacion</label>
           <select class="form-control" formControlName="locacion" required>
             <option value="">Seleccione Ubicacion</option>
-            <option *ngFor="" [ngValue]="">
+            <option *ngFor="let locacion of listadoLocaciones" [ngValue]="locacion.id">
+              {{locacion.sitio}} - {{locacion.area}} - {{locacion.localizacion}} - {{locacion.puesto}}
             </option>
           </select>
       </div>
@@ -177,7 +180,7 @@
     <div class="btn-group">
       <button class="btn btn-outline-primary" (click)="open(content)" style="margin-right: 5px;" >Registrar</button>
       <button class="btn btn-outline-primary"  (click)="busquedaActivo()" style="margin-right: 5px;" >Buscar</button>
-      <input type="text" name="nombre_alumno" placeholder="N° Inventario"
+      <input type="text" placeholder="N° Inventario"
         class="form-control" [(ngModel)]="buscar_activo">
         <button class="btn btn-outline-danger"  style="margin-left: 5px;" (click)="cancelarbusquedaActivo()" >Cancelar</button>
     </div>
@@ -216,8 +219,8 @@
             <td scope="row">{{activo.costo}}</td>
             <td scope="row">{{activo.estado}}</td>
             <td scope="row">{{activo.fecha_entrega}}</td>
-            <td scope="row">{{activo.usuario}}</td>
-            <td scope="row">{{activo.linea_telefonica}}</td>
+            <td scope="row">{{activo.usuario.nombre}} - {{activo.usuario.area}} - {{activo.usuario.posicion}}</td>
+            <td scope="row">{{activo.linea_telefonica.numero}} - {{activo.linea_telefonica.plan}}</td>
             <td scope="row">{{activo.locacion.sitio}} - {{activo.locacion.area}} - {{activo.locacion.localizacion}} - {{activo.locacion.puesto}}</td>
             <td scope="">
                 <button class="btn btn-outline-warning" (click)="ActivoCelularId(activo,content)">Editar</button>

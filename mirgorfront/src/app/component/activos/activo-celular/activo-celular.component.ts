@@ -9,12 +9,14 @@ import { Locacion } from 'src/app/entidades/locacion/locacion';
 import { LocacionService } from 'src/app/services/locacion/locacion.service';
 import { LineaTelefonica } from 'src/app/entidades/linea_telefonica/linea-telefonica';
 import { Usuario } from 'src/app/entidades/usuario/usuario';
+import { UsuarioService } from 'src/app/services/usuario/usuario.service';
+import { LineaTelefonicaService } from 'src/app/services/linea_telefonica/linea-telefonica.service';
 
 
 @Component({
   selector: 'app-activo-celular',
   templateUrl: './activo-celular.component.html',
-  styleUrls: ['./activo-celular.component.css']
+  styleUrls: ['./activo-celular.component.css'],
 })
 export class ActivoCelularComponent implements OnInit {
   p:number = 1;
@@ -23,7 +25,7 @@ export class ActivoCelularComponent implements OnInit {
   //Array de activos celulares
   listadoActivoCelular: ActivoCelular[] = [];
   //Array de lineas telefonicas
-  listadoLineaTelefonicas: LineaTelefonica[] = [];
+  listadoLineaTelefonica: LineaTelefonica[] = [];
   //Array de usuarios
   listadoUsuario : Usuario[] = [];
   //Buscar activo
@@ -39,11 +41,16 @@ export class ActivoCelularComponent implements OnInit {
     private formBuilder: FormBuilder,
     private modalService: NgbModal,
     config: NgbModalConfig,
-    private alertas : AlertService
+    private alertas : AlertService,
+    private servicioUsuario : UsuarioService,
+    private servicioLineaTelefonica: LineaTelefonicaService
   ) { }
 
   ngOnInit(): void {
     this.getLocaciones();
+    this.getUsuario();
+    this.getLineaTelefonica();
+    this.getActivoCelular();
   }
 
   //Formulario registro
@@ -74,6 +81,17 @@ export class ActivoCelularComponent implements OnInit {
     this.formularioRegistro.reset();
   }
 
+  getLineaTelefonica(): void{
+    this.servicioLineaTelefonica.getLineaTelefonica().subscribe(
+      (res) => {
+        this.listadoLineaTelefonica = res;
+      },
+      (error) => {
+        console.log(error)
+      }
+    )
+  }
+
    //GEt locaciones para mostrar en el select
    getLocaciones(): void{
     this.servicioLocacion.getLocaciones().subscribe(
@@ -83,6 +101,17 @@ export class ActivoCelularComponent implements OnInit {
     (error) => {
       console.log(error)
     }
+    )
+  }
+  //Get de Usuarios
+  getUsuario():void {
+    this.servicioUsuario.getUsuario().subscribe(
+      (res) => {
+        this.listadoUsuario = res;
+      },
+      (error) => {
+        console.log(error)
+      }
     )
   }
  // Get CElulares

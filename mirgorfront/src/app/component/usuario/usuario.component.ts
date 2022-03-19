@@ -65,6 +65,7 @@ export class UsuarioComponent implements OnInit {
   }
 
   registrarUsuario():void {
+    console.log(this.formularioRegistro.value)
     if(this.formularioRegistro.valid)
     {
       this.servicioUsuario.registrarUsuario(this.formularioRegistro.value).subscribe(
@@ -103,7 +104,7 @@ export class UsuarioComponent implements OnInit {
     )
   }
 
-  editarUsuario() : void{
+  editarUsuarioId() : void{
     this.servicioUsuario.editarUsuario(this.formularioRegistro.value, this.formularioRegistro.value.id).subscribe(
       (res) => {
         console.log(res)
@@ -141,6 +142,12 @@ export class UsuarioComponent implements OnInit {
 
     });
 }
+
+// Funcion cancelar solo para borrar los valores de formulario reactivo
+cancelar(): void{
+  this.formularioRegistro.reset();
+}
+
 
 
 

@@ -1,4 +1,3 @@
-from pyexpat import model
 from django.db import models
 from django.forms import IntegerField
 
@@ -26,7 +25,7 @@ class ActivoIndustrial(models.Model):
     def __str__(self):
         return f'Activo : {self.inventario} - {self.marca} - {self.modelo}'
 
-class Notebook(models.Model):
+class ActivoNotebook(models.Model):
     inventario = models.IntegerField()
     marca = models.CharField(max_length=50)
     modelo = models.CharField(max_length=50)
@@ -44,7 +43,7 @@ class Notebook(models.Model):
     def __str__(self):
         return f'Notebook: {self.inventario} - {self.marca} - {self.modelo} '
 
-class Celular(models.Model):
+class ActivoCelular(models.Model):
     inventario = models.IntegerField()
     imei = models.IntegerField()
     marca = models.CharField(max_length=50)

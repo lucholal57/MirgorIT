@@ -117,7 +117,6 @@ export class LocacionComponent implements OnInit {
 
   // Editar Locacion ya obtenido por el ID
   editarLocacionId(): void {
-    console.log(this.formularioRegistro.value.id)
       this.servicioLocacion.editarLocacion(this.formularioRegistro.value, this.formularioRegistro.value.id)
       .subscribe(
         (res) => {
@@ -189,4 +188,5 @@ cancelarbusquedaLocacion(): void {
  cancelar(): void{
   this.formularioRegistro.reset();
 }
+
 }

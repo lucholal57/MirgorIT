@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view , permission_classes
 from rest_framework.permissions import IsAuthenticated
-from .models import ActivoGeneral, ActivoIndustrial, ActivoStandar, Celular, Notebook
+from .models import ActivoGeneral, ActivoIndustrial, ActivoStandar, ActivoCelular, ActivoNotebook
 from .serializer import (ActivoIndustrialPostPutSerializer, ActivoIndustrialSerializer, ActivoCelularSerializer,
 ActivoCelularPostPutSerializer,ActivoNotebookSerializer,ActivoNotebookPostPutSerializer, ActivoGeneralSerializer,ActivoGeneralPostPutSerializer,
 ActivoStandarSerializer,ActivoStandarPostPutSerializer)
@@ -80,10 +80,10 @@ def BusquedaActivoIndustrialFabricante(request, fabricante):
 # VIEW DE Activo Celular
 @api_view(['GET' , 'POST'])
 
-def CelularListado(request):
+def ActivoCelularListado(request):
     #Listado
     if request.method == 'GET':
-        celular = Celular.objects.all().order_by('id')
+        celular = ActivoCelular.objects.all().order_by('id')
         serializer = ActivoCelularSerializer(celular, many = True)
         return Response(serializer.data, status=status.HTTP_200_OK)
     #Create
@@ -99,10 +99,10 @@ def CelularListado(request):
 #Funciones para la edicion y eliminacion, pasando el ID
 @api_view(['GET','PUT','DELETE'])
 
-def CelularBuscarPorId(request, pk=None):
+def ActivoCelularBuscarPorId(request, pk=None):
     
     #Consulta para obtener el listado sin FIRST
-    celular = Celular.objects.filter(id=pk)
+    celular = ActivoCelular.objects.filter(id=pk)
     #Validacion
     if celular:
         if request.method == 'GET':
@@ -111,7 +111,7 @@ def CelularBuscarPorId(request, pk=None):
 
         elif request.method == 'PUT':
             #Consulta para obtener el listado con FIRST
-            celular_edicion = ActivoIndustrial.objects.filter(id=pk).first()
+            celular_edicion = ActivoCelular.objects.filter(id=pk).first()
             serializer = ActivoCelularPostPutSerializer(celular_edicion, data=request.data)
             if serializer.is_valid():
                 serializer.save()
@@ -129,10 +129,10 @@ def CelularBuscarPorId(request, pk=None):
 # VIEW DE Activo Notebook
 @api_view(['GET' , 'POST'])
 
-def NotebookListado(request):
+def ActivoNotebookListado(request):
     #Listado
     if request.method == 'GET':
-        notebook = Notebook.objects.all().order_by('id')
+        notebook = ActivoNotebook.objects.all().order_by('id')
         serializer = ActivoNotebookSerializer(notebook, many = True)
         return Response(serializer.data, status=status.HTTP_200_OK)
     #Create
@@ -148,10 +148,10 @@ def NotebookListado(request):
 #Funciones para la edicion y eliminacion, pasando el ID
 @api_view(['GET','PUT','DELETE'])
 
-def NotebookBuscarPorId(request, pk=None):
+def ActivoNotebookBuscarPorId(request, pk=None):
     
     #Consulta para obtener el listado sin FIRST
-    notebook = Notebook.objects.filter(id=pk)
+    notebook = ActivoNotebook.objects.filter(id=pk)
     #Validacion
     if notebook:
         if request.method == 'GET':
@@ -160,7 +160,7 @@ def NotebookBuscarPorId(request, pk=None):
 
         elif request.method == 'PUT':
             #Consulta para obtener el listado con FIRST
-            notebook_edicion = ActivoIndustrial.objects.filter(id=pk).first()
+            notebook_edicion = ActivoNotebook.objects.filter(id=pk).first()
             serializer = ActivoNotebookPostPutSerializer(notebook_edicion, data=request.data)
             if serializer.is_valid():
                 serializer.save()

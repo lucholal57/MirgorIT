@@ -3,7 +3,7 @@ from django.forms import IntegerField
 
 # Create your models here.
 class LineaTelefonica(models.Model):
-    numero = models.IntegerField()
+    numero = models.CharField(max_length=50)
     plan = models.CharField(max_length=100)
 
 def __str__(self):
