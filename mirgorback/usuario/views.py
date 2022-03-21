@@ -55,8 +55,8 @@ def UsuarioBuscarPorId(request, pk=None):
 
 @api_view(['GET'])
 
-def BusquedaUsuarioPorNombre(request,nombre):
-    usuario = Usuario.objects.filter(nombre__icontains = nombre)
+def BusquedaUsuarioPorNombre(request,buscar_usuario):
+    usuario = Usuario.objects.filter(nombre__icontains = buscar_usuario)
     serializer = UsuarioSerializer(usuario, many = True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 

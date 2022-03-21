@@ -22,9 +22,35 @@
 
       <div class="modal-body">
 
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-6">
+          <label style="color:black" for="activo">Usuario</label>
+            <select class="form-control" formControlName="usuario">
+              <option value="">Seleccione de Usuario</option>
+              <option *ngFor="let usuario of listadoUsuario" [ngValue]="usuario.id">
+                {{usuario.nombre}} - {{usuario.area}}
+              </option>
+            </select>
+            <button class="btn btn-outline-primary" routerLink="/usuario" (click)="cerrarModal()">Ir a Usuarios</button>
+          </div>
+          <div class="col-sm-6">
+            <label style="color:black" for="activo">Ubicacion</label>
+              <select class="form-control" formControlName="locacion" required>
+                <option value="">Seleccione Ubicacion</option>
+                <option *ngFor="let locacion of listadoLocaciones" [ngValue]="locacion.id">
+                  {{locacion.sitio}} - {{locacion.area}} - {{locacion.localizacion}} - {{locacion.puesto}}
+                </option>
+              </select>
+              <button class="btn btn-outline-primary" routerLink="/locacion" (click)="cerrarModal()">Ir a Ubicaciones</button>
+            </div>
+        </div>
+      </div>
+
           <div class="form-group">
-            <label style="color:black" for="nombre">Inventario</label>
-            <div class="col-sm-12">
+            <div class="row">
+            <div class="col-sm-6">
+              <label style="color:black" for="nombre">Inventario</label>
             <input
               type="text"
               name="inventario"
@@ -35,25 +61,25 @@
             />
           </div>
 
-          </div>
-
-          <div class="form-group">
+          <div class="col-sm-6">
             <label style="color:black" for="nomber">Marca</label>
-            <div class="col-sm-12">
-            <input
-              type="text"
-              name="marca"
-              id="marca"
-              class="form-control"
-              formControlName="marca"
-              required
-            />
-          </div>
+          <input
+            type="text"
+            name="marca"
+            id="marca"
+            class="form-control"
+            formControlName="marca"
+            required
+          />
         </div>
+        </div>
+          </div>
+
 
           <div class="form-group">
-            <label style="color:black" for="telefono">Modelo</label>
-            <div class="col-sm-12">
+            <div class="row">
+            <div class="col-sm-6">
+              <label style="color:black" for="telefono">Modelo</label>
             <input
               type="text"
               name="modelo"
@@ -63,11 +89,8 @@
               required
             />
           </div>
-        </div>
-
-        <div class="form-group">
-          <label style="color:black" for="telefono">Serie</label>
-          <div class="col-sm-12">
+          <div class="col-sm-6">
+            <label style="color:black" for="telefono">Serie</label>
           <input
             type="text"
             name="serie"
@@ -77,11 +100,13 @@
             required
           />
         </div>
-      </div>
+        </div>
+        </div>
 
       <div class="form-group">
-        <label style="color:black" for="telefono">HostName</label>
-        <div class="col-sm-12">
+        <div class="row">
+        <div class="col-sm-6">
+          <label style="color:black" for="telefono">HostName</label>
         <input
           type="text"
           name="hostname"
@@ -91,25 +116,25 @@
           required
         />
       </div>
+      <div class="col-sm-6">
+        <label style="color:black" for="nomber">Tag</label>
+      <input
+        type="text"
+        name="tag"
+        id="tag"
+        class="form-control"
+        formControlName="tag"
+        required
+      />
+    </div>
+    </div>
     </div>
 
-          <div class="form-group">
-            <label style="color:black" for="nomber">Tag</label>
-            <div class="col-sm-12">
-            <input
-              type="text"
-              name="tag"
-              id="tag"
-              class="form-control"
-              formControlName="tag"
-              required
-            />
-          </div>
-        </div>
 
           <div class="form-group">
-            <label style="color:black" for="nomber">Costo</label>
-            <div class="col-sm-12">
+            <div class="row">
+            <div class="col-sm-6">
+              <label style="color:black" for="nomber">Costo</label>
             <input
               type="text"
               name="costo"
@@ -119,25 +144,25 @@
               required
             />
           </div>
-        </div>
-
-          <div class="form-group">
+          <div class="col-sm-6">
             <label style="color:black" for="nomber">Estado</label>
-            <div class="col-sm-12">
-            <input
-              type="text"
-              name="estado"
-              id="estado"
-              class="form-control"
-              formControlName="estado"
-              required
-            />
-          </div>
+            <select name="" id="" class="form-control" formControlName="estado">
+              <option value="">Seleccione un Estado</option>
+              <option value="Entregado">Entregado</option>
+              <option value="Reservado">Reservado</option>
+              <option value="Innecesario">Innecesario</option>
+              <option value="Scrap">Scrap</option>
+              <option value="Operativo">Operativo</option>
+              <option value="RMA">RMA</option>
+            </select>
+        </div>
+        </div>
         </div>
 
         <div class="form-group">
-          <label style="color:black" for="nomber">Fecha Entrega</label>
-          <div class="col-sm-12">
+          <div class="row">
+          <div class="col-sm-6">
+            <label style="color:black" for="nomber">Fecha Entrega</label>
           <input
             type="date"
             name="fecha_entrega"
@@ -147,26 +172,9 @@
           />
         </div>
       </div>
+    </div>
 
-      <div class="form-group">
-        <label style="color:black" for="activo">Usuario</label>
-          <select class="form-control" formControlName="usuario">
-            <option value="">Seleccione de Usuario</option>
-            <option *ngFor="let usuario of listadoUsuario" [ngValue]="usuario.id">
-              {{usuario.nombre}} - {{usuario.area}}
-            </option>
-          </select>
-      </div>
 
-      <div class="form-group">
-        <label style="color:black" for="activo">Ubicacion</label>
-          <select class="form-control" formControlName="locacion" required>
-            <option value="">Seleccione Ubicacion</option>
-            <option *ngFor="let locacion of listadoLocaciones" [ngValue]="locacion.id">
-              {{locacion.sitio}} - {{locacion.area}} - {{locacion.localizacion}} - {{locacion.puesto}}
-            </option>
-          </select>
-      </div>
 
       </div>
 
@@ -184,10 +192,10 @@
     <hr>
     <div class="btn-group">
       <button class="btn btn-outline-primary" (click)="open(content)" style="margin-right: 5px;" >Registrar</button>
-      <button class="btn btn-outline-primary" style="margin-right: 5px;" >Buscar</button>
+      <button class="btn btn-outline-primary" (click)="busquedaActivo()" style="margin-right: 5px;" >Buscar</button>
       <input type="text"  placeholder="N° Inventario"
         class="form-control" [(ngModel)]="buscar_activo">
-        <button class="btn btn-outline-danger"  style="margin-left: 5px;" >Cancelar</button>
+        <button class="btn btn-outline-danger" (click)="cancelarbusquedaActivo()"  style="margin-left: 5px;" >Cancelar</button>
     </div>
 
 
@@ -214,7 +222,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr class="text-center"*ngFor="let activo of listadoActivoNotebook" >
+        <tr class="text-center"*ngFor="let activo of listadoActivoNotebook | paginate: { itemsPerPage: 10, currentPage: p }" >
             <th scope="row">{{activo.id}}</th>
             <td scope="row">{{activo.inventario}}</td>
             <td scope="row">{{activo.marca}}</td>
@@ -236,6 +244,7 @@
     </tbody>
 
 </table>
+<pagination-controls (pageChange)="p = $event" class="my-pagination"></pagination-controls>
 </div>
 
 

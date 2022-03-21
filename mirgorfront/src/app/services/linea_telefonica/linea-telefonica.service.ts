@@ -35,5 +35,8 @@ export class LineaTelefonicaService {
   eliminarLineaTelefonica(id: number): Observable<LineaTelefonica[]>{
     return this.http.delete<LineaTelefonica[]>(this.url + 'linea_telefonica/' + id, httpOption );
   }
+  busquedaLineaTelefonica(buscar_linea_telefonica:string): Observable<LineaTelefonica[]>{
+    return  this.http.get<LineaTelefonica[]>(this.url + 'linea_telefonica/buscar/' + buscar_linea_telefonica, httpOption );
+  }
 
 }

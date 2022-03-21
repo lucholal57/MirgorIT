@@ -5,6 +5,6 @@ urlpatterns = [
     #rutas para los usuarios
     path('usuario',UsuarioListado),
     path('usuario/<int:pk>', UsuarioBuscarPorId),
-    path('usuario/buscar/<str:nombre>', BusquedaUsuarioPorNombre)
+    path('usuario/buscar/<str:buscar_usuario>', BusquedaUsuarioPorNombre)
 
 ]

@@ -23,8 +23,19 @@
         <div class="modal-body">
 
             <div class="form-group">
-              <label style="color:black" for="nombre">Inventario</label>
-              <div class="col-sm-12">
+              <div class="row">
+                <div class="col-sm-6">
+                  <label style="color:black" for="activo">Ubicacion</label>
+                  <select class="form-control" formControlName="locacion" required>
+                    <option value="">Seleccione una Ubicacion</option>
+                    <option *ngFor="let locacion of listadoLocaciones" [ngValue]="locacion.id">
+               {{locacion.sitio}} {{locacion.area}} {{locacion.localizacion}} {{locacion.puesto}}
+                    </option>
+                  </select>
+                  <button class="btn btn-outline-primary" routerLink="/locacion" (click)="cerrarModal()">Ir a Ubicaciones</button>
+                </div>
+              <div class="col-sm-6">
+                <label style="color:black" for="nombre">Inventario</label>
               <input
                 type="text"
                 name="inventario"
@@ -35,25 +46,13 @@
               />
             </div>
 
-            </div>
-
-            <div class="form-group">
-              <label style="color:black" for="apellido">Descripcion</label>
-              <div class="col-sm-12">
-              <input
-                type="text"
-                name="descripcion"
-                id="descripcion"
-                class="form-control"
-                formControlName="descripcion"
-                required
-              />
-            </div>
           </div>
+            </div>
 
             <div class="form-group">
-              <label style="color:black" for="nomber">Marca</label>
-              <div class="col-sm-12">
+              <div class="row">
+              <div class="col-sm-6">
+                <label style="color:black" for="nomber">Marca</label>
               <input
                 type="text"
                 name="marca"
@@ -63,25 +62,24 @@
                 required
               />
             </div>
-          </div>
-
-            <div class="form-group">
+            <div class="col-sm-6">
               <label style="color:black" for="telefono">Modelo</label>
-              <div class="col-sm-12">
-              <input
-                type="text"
-                name="modelo"
-                id="modelo"
-                class="form-control"
-                formControlName="modelo"
-                required
-              />
-            </div>
+            <input
+              type="text"
+              name="modelo"
+              id="modelo"
+              class="form-control"
+              formControlName="modelo"
+              required
+            />
+          </div>
+          </div>
           </div>
 
             <div class="form-group">
-              <label style="color:black" for="nomber">Serie</label>
-              <div class="col-sm-12">
+              <div class="row">
+              <div class="col-sm-6">
+                <label style="color:black" for="nomber">Serie</label>
               <input
                 type="text"
                 name="serie"
@@ -91,25 +89,24 @@
                 required
               />
             </div>
-          </div>
-
-            <div class="form-group">
+            <div class="col-sm-6">
               <label style="color:black" for="nomber">Hostname</label>
-              <div class="col-sm-12">
-              <input
-                type="text"
-                name="hostname"
-                id="hostname"
-                class="form-control"
-                formControlName="hostname"
-                required
-              />
-            </div>
+            <input
+              type="text"
+              name="hostname"
+              id="hostname"
+              class="form-control"
+              formControlName="hostname"
+              required
+            />
+          </div>
+          </div>
           </div>
 
             <div class="form-group">
-              <label style="color:black" for="nomber">Costo</label>
-              <div class="col-sm-12">
+              <div class="row">
+              <div class="col-sm-6">
+                <label style="color:black" for="nomber">Costo</label>
               <input
                 type="text"
                 name="costo"
@@ -119,26 +116,26 @@
                 required
               />
             </div>
+            <div class="col-sm-6">
+              <label style="color:black" for="nomber">Estado</label>
+              <select name="" id="" class="form-control" formControlName="estado">
+                <option value="">Seleccione un Estado</option>
+                <option value="Entregado">Entregado</option>
+                <option value="Reservado">Reservado</option>
+                <option value="Innecesario">Innecesario</option>
+                <option value="Scrap">Scrap</option>
+                <option value="Operativo">Operativo</option>
+                <option value="RMA">RMA</option>
+              </select>
           </div>
 
-          <div class="form-group">
-            <label style="color:black" for="nomber">Estado</label>
-            <div class="col-sm-12">
-            <input
-              type="text"
-              name="estado"
-              id="estado"
-              class="form-control"
-              formControlName="estado"
-              required
-            />
           </div>
         </div>
 
-
         <div class="form-group">
-            <label style="color:black" for="nomber">Fecha Mantenimiento</label>
-            <div class="col-sm-12">
+          <div class="row">
+            <div class="col-sm-6">
+              <label style="color:black" for="nomber">Fecha Mantenimiento</label>
             <input
               type="date"
               name="fecha_mantenimiento"
@@ -148,11 +145,8 @@
               required
             />
           </div>
-        </div>
-
-        <div class="form-group">
-          <label style="color:black" for="nomber">DPI</label>
-          <div class="col-sm-12">
+          <div class="col-sm-6">
+            <label style="color:black" for="nomber">DPI</label>
           <input
             type="text"
             name="dpi"
@@ -161,11 +155,14 @@
             formControlName="dpi"
           />
         </div>
-      </div>
+
+        </div>
+        </div>
 
       <div class="form-group">
-        <label style="color:black" for="nomber">IP</label>
-        <div class="col-sm-12">
+        <div class="row">
+        <div class="col-sm-6">
+          <label style="color:black" for="nomber">IP</label>
         <input
           type="text"
           name="ip"
@@ -174,21 +171,20 @@
           formControlName="ip"
         />
       </div>
+      <div class="col-sm-6">
+        <label style="color:black" for="apellido">Descripcion</label>
+      <input
+        type="text"
+        name="descripcion"
+        id="descripcion"
+        class="form-control"
+        formControlName="descripcion"
+        required
+      />
     </div>
 
-
-
-        <div class="form-group">
-          <label style="color:black" for="activo">Ubicacion</label>
-            <select class="form-control" formControlName="locacion" required>
-              <option value="">Seleccione una Ubicacion</option>
-              <option *ngFor="let locacion of listadoLocaciones" [ngValue]="locacion.id">
-         {{locacion.sitio}} {{locacion.area}} {{locacion.localizacion}}
-              </option>
-            </select>
-        </div>
-
-
+    </div>
+    </div>
 
         </div>
 
@@ -200,6 +196,7 @@
       </ng-template>
 
 </form>
+
 
     <div class="container-fluid" id="contenedorTabla">
         <legend align="center" style="color: aliceblue;" >ACTIVOS INDUSTRALES</legend>
@@ -237,7 +234,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr class="text-center"*ngFor="let activo of listadoActivos" >
+            <tr class="text-center"*ngFor="let activo of listadoActivos | paginate: { itemsPerPage: 10, currentPage: p }" >
                 <th scope="row">{{activo.id}}</th>
                 <td scope="row">{{activo.inventario}}</td>
                 <td scope="row">{{activo.descripcion}}</td>
@@ -260,6 +257,7 @@
         </tbody>
 
     </table>
+    <pagination-controls (pageChange)="p = $event" class="my-pagination"></pagination-controls>
 </div>
 </body>
 </html>

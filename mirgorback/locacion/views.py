@@ -55,7 +55,7 @@ def LocacionBuscarPorId(request,pk=None):
 
     
 @api_view(['GET'])
-def BusquedaLocacionNombre(request, nombre):
-    locacion = Locacion.objects.filter(nombre__icontains = nombre)
+def BusquedaLocacionArea(request, buscar_locacion):
+    locacion = Locacion.objects.filter(area__icontains = buscar_locacion)
     serializer = LocacionSerializer(locacion, many = True)
     return Response(serializer.data, status=status.HTTP_200_OK)

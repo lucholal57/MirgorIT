@@ -21,6 +21,7 @@ import { ActivoCelularComponent } from './component/activos/activo-celular/activ
 import { ActivoNotebookComponent } from './component/activos/activo-notebook/activo-notebook.component';
 import { UsuarioComponent } from './component/usuario/usuario.component';
 import { LineaTelefonicaComponent } from './component/linea-telefonica/linea-telefonica.component';
+import { LoginComponent } from './component/login/login.component';
 
 
 
@@ -38,6 +39,7 @@ import { LineaTelefonicaComponent } from './component/linea-telefonica/linea-tel
     ActivoNotebookComponent,
     UsuarioComponent,
     LineaTelefonicaComponent,
+    LoginComponent,
 
   ],
   imports: [

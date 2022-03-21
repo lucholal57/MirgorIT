@@ -38,7 +38,7 @@ class ActivoNotebook(models.Model):
 
     #Forenkey usuario y ubicacion
     locacion = models.ForeignKey(Locacion, on_delete=models.CASCADE)
-    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE,null=True)
 
     def __str__(self):
         return f'Notebook: {self.inventario} - {self.marca} - {self.modelo} '
@@ -63,7 +63,7 @@ class ActivoCelular(models.Model):
 
 class ActivoGeneral(models.Model):
     inventario = models.IntegerField()
-    descipcion = models.CharField(max_length=50)
+    descripcion = models.CharField(max_length=50)
     marca = models.CharField(max_length=50)
     modelo = models.CharField(max_length=50)
     serie = models.CharField(max_length=50)

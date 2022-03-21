@@ -35,6 +35,9 @@ export class ActivoCelularService {
   eliminarActivoCelular(id: number): Observable<ActivoCelular[]>{
     return this.http.delete<ActivoCelular[]>(this.url + 'celular/' + id, httpOption );
   }
+  busquedaActivo(buscar_activo:string): Observable<ActivoCelular[]>{
+    return  this.http.get<ActivoCelular[]>(this.url + 'celular/buscar/' + buscar_activo, httpOption );
+  }
 
 }
 

@@ -67,10 +67,10 @@
   <hr>
   <div class="btn-group">
     <button class="btn btn-outline-primary" (click)="open(content)" style="margin-right: 5px;" >Registrar</button>
-    <button class="btn btn-outline-primary"   style="margin-right: 5px;" >Buscar</button>
+    <button class="btn btn-outline-primary"  (click)="busquedaLineaTelefonica()" style="margin-right: 5px;" >Buscar</button>
     <input type="text" placeholder="N° Linea"
-      class="form-control" >
-      <button class="btn btn-outline-danger"  style="margin-left: 5px;" >Cancelar</button>
+      class="form-control" [(ngModel)]="buscar_linea_telefonica" >
+      <button class="btn btn-outline-danger" (click)="cancelarbusquedaLineaTelefonica()"  style="margin-left: 5px;" >Cancelar</button>
   </div>
 
 
@@ -88,7 +88,7 @@
       </tr>
   </thead>
   <tbody>
-      <tr class="text-center"*ngFor="let linea_telefonica of listadoLineaTelefonica" >
+      <tr class="text-center"*ngFor="let linea_telefonica of listadoLineaTelefonica | paginate: { itemsPerPage: 10, currentPage: p }" >
           <th scope="row">{{linea_telefonica.id}}</th>
           <td scope="row">{{linea_telefonica.numero}}</td>
           <td scope="row">{{linea_telefonica.plan}}</td>
@@ -101,6 +101,7 @@
   </tbody>
 
 </table>
+<pagination-controls (pageChange)="p = $event" class="my-pagination"></pagination-controls>
 </div>
 
 </body>

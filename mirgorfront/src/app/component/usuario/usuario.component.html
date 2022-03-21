@@ -14,7 +14,7 @@
   <ng-template #content let-c="close" let-d="dismiss" >
 
     <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Formulario Activo Industrial</h4>
+      <h4 class="modal-title" id="modal-basic-title">Formulario Usuario</h4>
       <button type="button" class="close" aria-label="Close" (click)="cerrarModal()">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -95,10 +95,10 @@
   <hr>
   <div class="btn-group">
     <button class="btn btn-outline-primary" (click)="open(content)" style="margin-right: 5px;" >Registrar</button>
-    <button class="btn btn-outline-primary"   style="margin-right: 5px;" >Buscar</button>
-    <input type="text" placeholder="Nombre Usuario"
+    <button class="btn btn-outline-primary" (click)="busquedaUsuario()"   style="margin-right: 5px;" >Buscar</button>
+    <input type="text" placeholder="Nombre"
       class="form-control" [(ngModel)]="buscar_usuario">
-      <button class="btn btn-outline-danger"  style="margin-left: 5px;" >Cancelar</button>
+      <button class="btn btn-outline-danger" (click)="cancelarbusquedaUsuario()" style="margin-left: 5px;" >Cancelar</button>
   </div>
 
 
@@ -118,7 +118,7 @@
       </tr>
   </thead>
   <tbody>
-      <tr class="text-center"*ngFor="let usuario of listadoUsuario" >
+      <tr class="text-center"*ngFor="let usuario of listadoUsuario | paginate: { itemsPerPage: 10, currentPage: p }" >
           <th scope="row">{{usuario.id}}</th>
           <td scope="row">{{usuario.nombre}}</td>
           <td scope="row">{{usuario.correo}}</td>
@@ -133,6 +133,7 @@
   </tbody>
 
 </table>
+<pagination-controls (pageChange)="p = $event" class="my-pagination"></pagination-controls>
 </div>
 
 

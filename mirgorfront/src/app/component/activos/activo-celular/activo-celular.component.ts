@@ -12,7 +12,6 @@ import { Usuario } from 'src/app/entidades/usuario/usuario';
 import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 import { LineaTelefonicaService } from 'src/app/services/linea_telefonica/linea-telefonica.service';
 
-
 @Component({
   selector: 'app-activo-celular',
   templateUrl: './activo-celular.component.html',
@@ -215,7 +214,24 @@ export class ActivoCelularComponent implements OnInit {
 
 // Busqueda de acompañantes por alumno
 busquedaActivo(): void{
-
+  if (this.buscar_activo== ""){
+    this.alertas.alertcampos();
+  }else{
+    this.servicioActivoCelular.busquedaActivo(this.buscar_activo).subscribe(
+      (res) => {
+        console.log(res)
+        if (res.length != 0){
+          this.alertas.alertLoading();
+        }else{
+          this.alertas.alertLoadingError();
+        }
+        this.listadoActivoCelular= res;
+      },
+      (error) => {
+        this.alertas.alerterror();
+      }
+    )
+  }
 }
 
 // Funcion para cancelar busqueda por alumno

@@ -55,3 +55,9 @@ def LineaTelefonicaBuscarPorId(request,pk=None):
     
     #Validacion si no se encontro la linea_telefonica
     return Response({'message':'No se encontro linea telefonica'},status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET'])
+def BusquedaLineaTelefonicaNumero(request, buscar_linea_telefonica):
+    locacion = LineaTelefonica.objects.filter(numero__icontains = buscar_linea_telefonica)
+    serializer = LineaTelefonicaSerializer(locacion, many = True)
+    return Response(serializer.data, status=status.HTTP_200_OK)

@@ -37,7 +37,7 @@ export class ActivoService {
   eliminarActivo(id: number): Observable<Activo[]>{
     return this.http.delete<Activo[]>(this.url + 'activo/' + id, httpOption );
   }
-  busquedaActivo(numero_inventario:string): Observable<Activo[]>{
-    return  this.http.get<Activo[]>(this.url + 'activo/buscar/' + numero_inventario, httpOption );
+  busquedaActivo(buscar_activo:string): Observable<Activo[]>{
+    return  this.http.get<Activo[]>(this.url + 'activo/buscar/' + buscar_activo, httpOption );
   }
 }

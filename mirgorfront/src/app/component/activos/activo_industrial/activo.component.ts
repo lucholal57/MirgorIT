@@ -25,10 +25,18 @@ export class ActivoComponent implements OnInit {
     listadoActivosExistente :Activo[] =[];
   //Buscar activo
   buscar_activo = "";
+
+  dropdownList = [];
+  selectedItems = [];
+  dropdownSettings = {};
+
+
+
    // Variables Botones
    public btnGuardar = false;
    public btnEditar = false;
    public btnCancelar = false;
+
 
   constructor(
     private servicioActivo: ActivoService,
@@ -42,7 +50,22 @@ export class ActivoComponent implements OnInit {
   ngOnInit(): void {
     this.getActivos();
     this.getLocaciones();
+
+    /* ----ngxmultiselect Angular----
+    this.dropdownSettings = {
+      singleSelection: true,
+      idField: 'id',
+      textField:"area",
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    };
+    console.log(this.dropdownList)
+    */
+
   }
+
 
   //Formulario Registro
   formularioRegistro= this.formBuilder.group({
@@ -90,6 +113,9 @@ export class ActivoComponent implements OnInit {
     this.servicioLocacion.getLocaciones().subscribe(
       (res) => {
         this.listadoLocaciones = res;
+        this.listadoLocaciones.forEach(a=> {
+          this.dropdownList.push(new Object({id: a.id, sitio:a.sitio , area:a.area, localizacion:a.localizacion, puesto:a.puesto }));
+        })
       },
     (error) => {
       console.log(error)
@@ -98,6 +124,7 @@ export class ActivoComponent implements OnInit {
   }
 
   registrarActivos():void{
+    console.log(this.formularioRegistro.value.locacion,"Aver q es el valor seleccionado")
     if(this.formularioRegistro.valid)
     {
       this.servicioActivo.registrarActivo(this.formularioRegistro.value).subscribe(

@@ -148,6 +148,34 @@ cancelar(): void{
   this.formularioRegistro.reset();
 }
 
+// Busqueda de acompañantes por alumno
+busquedaUsuario(): void{
+  if (this.buscar_usuario== ""){
+    this.alertas.alertcampos();
+  }else{
+    this.servicioUsuario.busquedaUsuario(this.buscar_usuario).subscribe(
+      (res) => {
+        console.log(res)
+        if (res.length != 0){
+          this.alertas.alertLoading();
+        }else{
+          this.alertas.alertLoadingError();
+        }
+        this.listadoUsuario= res;
+      },
+      (error) => {
+        this.alertas.alerterror();
+      }
+    )
+  }
+}
+
+// Funcion para cancelar busqueda por alumno
+cancelarbusquedaUsuario(): void {
+  this.getUsuario();
+  this.buscar_usuario = "";
+}
+
 
 
 

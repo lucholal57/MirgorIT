@@ -34,4 +34,7 @@ export class ActivoNotebookService {
   eliminarActivoNotebook(id: number): Observable<ActivoNotebook[]>{
     return this.http.delete<ActivoNotebook[]>(this.url + 'notebook/' + id, httpOption );
   }
+  busquedaActivo(buscar_activo:string): Observable<ActivoNotebook[]>{
+    return  this.http.get<ActivoNotebook[]>(this.url + 'notebook/buscar/' + buscar_activo, httpOption );
+  }
 }

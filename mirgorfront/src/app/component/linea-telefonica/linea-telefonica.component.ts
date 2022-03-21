@@ -16,7 +16,7 @@ export class LineaTelefonicaComponent implements OnInit {
   //Array de Lineas Telefonicas
   listadoLineaTelefonica : LineaTelefonica[] =[];
   //Busqueda linea
-  busqueda_linea_telefonica = "";
+  buscar_linea_telefonica = "";
     // Variables Botones
     public btnGuardar = false;
     public btnEditar = false;
@@ -143,6 +143,34 @@ export class LineaTelefonicaComponent implements OnInit {
  // Funcion cancelar solo para borrar los valores de formulario reLocacion
  cancelar(): void{
   this.formularioRegistro.reset();
+}
+
+// Busqueda de acompañantes por alumno
+busquedaLineaTelefonica(): void{
+  if (this.buscar_linea_telefonica== ""){
+    this.alertas.alertcampos();
+  }else{
+    this.servicioLineaTelefonica.busquedaLineaTelefonica(this.buscar_linea_telefonica).subscribe(
+      (res) => {
+        console.log(res)
+        if (res.length != 0){
+          this.alertas.alertLoading();
+        }else{
+          this.alertas.alertLoadingError();
+        }
+        this.listadoLineaTelefonica= res;
+      },
+      (error) => {
+        this.alertas.alerterror();
+      }
+    )
+  }
+}
+
+// Funcion para cancelar busqueda por alumno
+cancelarbusquedaLineaTelefonica(): void {
+  this.getLineaTelefonica();
+  this.buscar_linea_telefonica = "";
 }
 
 

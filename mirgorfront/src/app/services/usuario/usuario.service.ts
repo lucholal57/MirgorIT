@@ -35,5 +35,8 @@ export class UsuarioService {
   eliminarUsuario(id: number): Observable<Usuario[]>{
     return this.http.delete<Usuario[]>(this.url + 'usuario/' + id, httpOption );
   }
+  busquedaUsuario(buscar_usuario:string): Observable<Usuario[]>{
+    return  this.http.get<Usuario[]>(this.url + 'usuario/buscar/' + buscar_usuario, httpOption );
+  }
 
 }

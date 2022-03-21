@@ -26,7 +26,7 @@ export class LocacionService {
   getLocacionId(busqueda_Locacion: Locacion): Observable<Locacion[]>{
     return this.http.get<Locacion[]>(this.url + 'locacion/' + busqueda_Locacion.id,httpOption );
   }
-  
+
   editarLocacion(formularioregistro: any, id: number): Observable<Locacion[]>{
     return this.http.put<Locacion[]>(this.url + 'locacion/' + id, formularioregistro, httpOption);
 
@@ -34,7 +34,7 @@ export class LocacionService {
   eliminarLocacion(id: number): Observable<Locacion[]>{
     return this.http.delete<Locacion[]>(this.url + 'locacion/' + id, httpOption );
   }
-  busquedaLocacion(nombre:any): Observable<Locacion[]>{
-    return  this.http.get<Locacion[]>(this.url + 'locacion/buscar/' + nombre, httpOption );
+  busquedaLocacion(buscar_locacion:any): Observable<Locacion[]>{
+    return  this.http.get<Locacion[]>(this.url + 'locacion/buscar/' + buscar_locacion, httpOption );
   }
 }

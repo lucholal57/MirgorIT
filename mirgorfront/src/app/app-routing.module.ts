@@ -9,10 +9,11 @@ import { EstadisticaComponent } from './component/estadistica/estadistica.compon
 import { InicioComponent } from './component/inicio/inicio.component';
 import { LineaTelefonicaComponent } from './component/linea-telefonica/linea-telefonica.component';
 import { LocacionComponent } from './component/locacion/locacion.component';
+import { LoginComponent } from './component/login/login.component';
 import { UsuarioComponent } from './component/usuario/usuario.component';
 
 const routes: Routes = [
-  {path:'', component: InicioComponent},
+  {path:'inicio', component: InicioComponent},
   {path:'activo_industrial', component: ActivoComponent},
   {path:'activo_celular', component: ActivoCelularComponent},
   {path:'activo_notebook', component: ActivoNotebookComponent},
@@ -21,7 +22,9 @@ const routes: Routes = [
   {path:'locacion', component: LocacionComponent},
   {path:'dashboard', component: EstadisticaComponent},
   {path:'usuario', component: UsuarioComponent},
-  {path:'linea_telefonica', component:LineaTelefonicaComponent}
+  {path:'linea_telefonica', component:LineaTelefonicaComponent},
+  {path:'', component: LoginComponent},
+
 ];
 
 @NgModule({

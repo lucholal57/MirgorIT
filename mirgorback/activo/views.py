@@ -63,16 +63,8 @@ def ActivoIndustrialBuscarPorId(request, pk=None):
     #Busqueda de ActivoIndustrial por inventario
 @api_view(['GET'])
 
-def BusquedaActivoIndustrialInventario(request, numero_inventario):
-    activo = ActivoIndustrial.objects.filter(numero_inventario = numero_inventario)
-    serializer = ActivoIndustrialSerializer(activo, many = True)
-    return Response(serializer.data, status=status.HTTP_200_OK)
-
-        #Busqueda de ActivoIndustrial por fabricante para asociar a linea
-@api_view(['GET'])
-
-def BusquedaActivoIndustrialFabricante(request, fabricante):
-    activo = ActivoIndustrial.objects.filter(fabricante__icontains = fabricante)
+def BusquedaActivoIndustrialInventario(request, buscar_activo):
+    activo = ActivoIndustrial.objects.filter(inventario__icontains = buscar_activo)
     serializer = ActivoIndustrialSerializer(activo, many = True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -125,6 +117,14 @@ def ActivoCelularBuscarPorId(request, pk=None):
     #Validacion si no se encontro el ActivoIndustrial
     return Response({'message': 'No se encontro Celular'}, status=status.HTTP_400_BAD_REQUEST)
 
+    #Busqueda de ActivoCelular por inventario
+@api_view(['GET'])
+
+def BusquedaActivoCelularInventario(request, buscar_activo):
+    activo = ActivoCelular.objects.filter(inventario__icontains = buscar_activo)
+    serializer = ActivoCelularSerializer(activo, many = True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
 
 # VIEW DE Activo Notebook
 @api_view(['GET' , 'POST'])
@@ -173,6 +173,14 @@ def ActivoNotebookBuscarPorId(request, pk=None):
             return Response({'message':'Notebook eliminado correctamente'}, status=status.HTTP_200_OK)
     #Validacion si no se encontro el ActivoIndustrial
     return Response({'message': 'No se encontro Notebook'}, status=status.HTTP_400_BAD_REQUEST)
+
+     #Busqueda de ActivoNotebook por inventario
+@api_view(['GET'])
+
+def BusquedaActivoNotebookInventario(request, buscar_activo):
+    activo = ActivoNotebook.objects.filter(inventario__icontains = buscar_activo)
+    serializer = ActivoNotebookSerializer(activo, many = True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
 
       
 # VIEW DE Activo General
@@ -223,6 +231,14 @@ def ActivoGeneralBuscarPorId(request, pk=None):
     #Validacion si no se encontro el ActivoIndustrial
     return Response({'message': 'No se encontro Activo'}, status=status.HTTP_400_BAD_REQUEST)
 
+    #Busqueda de ActivoGeneral por inventario
+@api_view(['GET'])
+
+def BusquedaActivoGeneralInventario(request, buscar_activo):
+    activo = ActivoGeneral.objects.filter(inventario__icontains = buscar_activo)
+    serializer = ActivoGeneralSerializer(activo, many = True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
 # VIEW DE Activo Standar
 @api_view(['GET' , 'POST'])
 
@@ -270,5 +286,14 @@ def ActivoStandarBuscarPorId(request, pk=None):
             return Response({'message':'Activo eliminado correctamente'}, status=status.HTTP_200_OK)
     #Validacion si no se encontro el ActivoIndustrial
     return Response({'message': 'No se encontro Activo'}, status=status.HTTP_400_BAD_REQUEST)
+
+      #Busqueda de ActivoStandar por inventario
+@api_view(['GET'])
+
+def BusquedaActivoStandarInventario(request, buscar_activo):
+    activo = ActivoStandar.objects.filter(inventario__icontains = buscar_activo)
+    serializer = ActivoStandarSerializer(activo, many = True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
 
       

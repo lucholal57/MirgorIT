@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'activo',
     'locacion',
     'usuario',
-    'linea_telefonica'
+    'linea_telefonica',
+    'login',
 ]
 
 MIDDLEWARE = [

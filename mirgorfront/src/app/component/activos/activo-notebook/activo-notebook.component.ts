@@ -191,6 +191,34 @@ export class ActivoNotebookComponent implements OnInit {
     });
 }
 
+// Busqueda de acompañantes por alumno
+busquedaActivo(): void{
+  if (this.buscar_activo== ""){
+    this.alertas.alertcampos();
+  }else{
+    this.servicioActivoNotebook.busquedaActivo(this.buscar_activo).subscribe(
+      (res) => {
+        console.log(res)
+        if (res.length != 0){
+          this.alertas.alertLoading();
+        }else{
+          this.alertas.alertLoadingError();
+        }
+        this.listadoActivoNotebook= res;
+      },
+      (error) => {
+        this.alertas.alerterror();
+      }
+    )
+  }
+}
+
+// Funcion para cancelar busqueda por alumno
+cancelarbusquedaActivo(): void {
+  this.getActivoNotebook();
+  this.buscar_activo = "";
+}
+
 // Funcion cancelar solo para borrar los valores de formulario reactivo
 cancelar(): void{
   this.formularioRegistro.reset();
