@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 import { Locacion } from 'src/app/entidades/locacion/locacion';
 import { LocacionService } from 'src/app/services/locacion/locacion.service';
 
-
+// Funcion
 @Component({
   selector: 'app-activo',
   templateUrl: './activo.component.html',
