@@ -9,7 +9,7 @@ DATABASES ={
         'ENGINE' : 'django.db.backends.postgresql_psycopg2',
         'NAME' : 'mirgordb',
         'USER' : 'admin',
-        'PASSWORD' : 'admin',
+        'PASSWORD' : 'riogrande91',
         'HOST' : 'localhost',
        'PORT' : '5432',
     }
