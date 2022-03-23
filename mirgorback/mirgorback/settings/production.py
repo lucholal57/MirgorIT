@@ -7,8 +7,8 @@ ALLOWED_HOSTS = ['192.168.52.147','192.168.52.255', 'mirgorit.com','www.mirgorit
 DATABASES ={
     'default':{
         'ENGINE' : 'django.db.backends.postgresql_psycopg2',
-        'NAME' : 'mirgordb',
-        'USER' : 'admin',
+        'NAME' : 'mirgordb_prod',
+        'USER' : 'mirgor',
         'PASSWORD' : 'riogrande91',
         'HOST' : 'localhost',
        'PORT' : '5432',
