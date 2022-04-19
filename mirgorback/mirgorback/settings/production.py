@@ -7,8 +7,8 @@ ALLOWED_HOSTS = ['192.168.52.230']
 DATABASES ={
     'default':{
         'ENGINE' : 'django.db.backends.postgresql_psycopg2',
-        'NAME' : 'mirgordb_prod',
-        'USER' : 'mirgor',
+        'NAME' : 'mirgordb',
+        'USER' : 'luciano',
         'PASSWORD' : 'riogrande91',
         'HOST' : 'localhost',
        'PORT' : '5432',
