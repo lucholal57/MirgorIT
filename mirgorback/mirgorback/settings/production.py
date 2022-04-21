@@ -2,13 +2,13 @@ from .base import *
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['192.168.52.230']
+ALLOWED_HOSTS = ['192.168.52.74']
 
 DATABASES ={
     'default':{
         'ENGINE' : 'django.db.backends.postgresql_psycopg2',
-        'NAME' : 'mirgordb',
-        'USER' : 'luciano',
+        'NAME' : 'mirgordb_prod',
+        'USER' : 'mirgor',
         'PASSWORD' : 'riogrande91',
         'HOST' : 'localhost',
        'PORT' : '5432',
